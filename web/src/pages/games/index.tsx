@@ -50,7 +50,7 @@ export default function Page() {
     }, [page, search]);
 
     useEffect(() => {
-        document.title = `比赛 - ${configStore?.pltCfg?.site?.title}`;
+        document.title = `Games - ${configStore?.pltCfg?.site?.title}`;
     }, []);
 
     return (
@@ -63,13 +63,13 @@ export default function Page() {
                 gap={36}
                 pos={"relative"}
             >
-                {!games.length && <WaterMark icon={"flag"} text={"暂无比赛"} />}
+                {!games.length && <WaterMark icon={"flag"} text={"No Games Available"} />}
                 <Flex w={"100%"} gap={20}>
                     <TextInput
                         variant="filled"
                         size="lg"
                         flex={1}
-                        placeholder={"搜索比赛"}
+                        placeholder={"Search Games"}
                         value={searchInput}
                         onChange={(e) => setSearchInput(e.currentTarget.value)}
                     />
@@ -80,7 +80,7 @@ export default function Page() {
                             setSearch(searchInput);
                         }}
                     >
-                        搜索
+                        Search
                     </Button>
                 </Flex>
                 <Stack w={"100%"} flex={1} pos={"relative"}>

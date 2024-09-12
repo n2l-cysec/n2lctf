@@ -90,7 +90,7 @@ export default function withGame(WrappedComponent: React.ComponentType<any>) {
                                     }
                                     to={`/games/${id}/challenges`}
                                 >
-                                    题目
+                                    topic
                                 </Button>
                                 <Button
                                     component={Link}
@@ -113,7 +113,7 @@ export default function withGame(WrappedComponent: React.ComponentType<any>) {
                                     }
                                     to={`/games/${id}/scoreboard`}
                                 >
-                                    积分榜
+                                    standings
                                 </Button>
                             </Group>
                         </Flex>

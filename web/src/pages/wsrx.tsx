@@ -45,7 +45,7 @@ export default function Page() {
                 >
                     <Flex gap={10} align={"center"}>
                         <MDIcon>link</MDIcon>
-                        <Text fw={600}>连接器</Text>
+                        <Text fw={600}>Connector</Text>
                     </Flex>
                     <Indicator
                         processing
@@ -63,10 +63,10 @@ export default function Page() {
                     <Blockquote color="blue" p={10} my={20}>
                         <Flex align={"center"} gap={10}>
                             <Text fz={"sm"}>
-                                本平台使用 WebSocketReflectorX （以下简称 WSRX）
-                                作为启用 TCP over WebSocket
-                                代理的容器的连接器，以下设置用于与 WSRX
-                                交互，提升使用体验。
+                                This platform uses WebSocketReflectorX (hereinafter referred to as WSRX)
+                                as the connector for enabling TCP over WebSocket
+                                proxy containers. The following settings are used to interact with WSRX
+                                and improve the user experience.
                             </Text>
                             <ActionIcon
                                 onClick={() => {
@@ -92,7 +92,7 @@ export default function Page() {
                             rightSection={
                                 <Flex>
                                     <Divider mx={10} orientation={"vertical"} />
-                                    <Tooltip withArrow label={"重新连接"}>
+                                    <Tooltip withArrow label={"Reconnect"}>
                                         <ActionIcon
                                             onClick={() => wsrxStore.connect()}
                                         >
@@ -104,7 +104,7 @@ export default function Page() {
                         />
                         <Checkbox
                             label={
-                                "启用连接器（若不启用，则需手动与题目环境进行连接）"
+                                "Enable Connector (If not enabled, you need to manually connect to the environment)"
                             }
                             checked={wsrxStore?.isEnabled}
                             onChange={(e) => {

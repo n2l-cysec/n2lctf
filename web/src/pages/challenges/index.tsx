@@ -57,7 +57,7 @@ export default function Page() {
     const [selectedChallenge, setSelectedChallenge] = useState<Challenge>();
 
     useEffect(() => {
-        document.title = `题库 - ${configStore?.pltCfg?.site?.title}`;
+        document.title = `Challenge Library - ${configStore?.pltCfg?.site?.title}`;
     }, []);
 
     function handleGetChallenges() {
@@ -89,7 +89,7 @@ export default function Page() {
             .catch((err) => {
                 if (err?.response?.status === 400) {
                     showErrNotification({
-                        message: `获取题目失败 ${err}`,
+                        message: `Failed to retrieve challenges ${err}`,
                     });
                 }
             })
@@ -111,7 +111,7 @@ export default function Page() {
                             <Flex justify={"space-between"} align={"center"}>
                                 <Input
                                     variant="filled"
-                                    placeholder="搜索"
+                                    placeholder="Search"
                                     mr={5}
                                     value={searchInput}
                                     onChange={(e) =>
@@ -129,8 +129,8 @@ export default function Page() {
                                 </ActionIcon>
                             </Flex>
                             <Select
-                                label="每页显示"
-                                description="选择每页显示的题目数量"
+                                label="Items per page"
+                                description="Choose the number of challenges to display per page"
                                 value={String(rowsPerPage)}
                                 allowDeselect={false}
                                 data={["20", "25", "50", "100"]}
@@ -202,25 +202,25 @@ export default function Page() {
                                 ))}
                             </Box>
                             <Select
-                                label="排序"
-                                description="选择题目排序方式"
+                                label="Sort by"
+                                description="Choose the sorting method for challenges"
                                 value={sort}
                                 allowDeselect={false}
                                 data={[
                                     {
-                                        label: "ID 降序",
+                                        label: "ID Descending",
                                         value: "id_desc",
                                     },
                                     {
-                                        label: "ID 升序",
+                                        label: "ID Ascending",
                                         value: "id_asc",
                                     },
                                     {
-                                        label: "难度降序",
+                                        label: "Difficulty Descending",
                                         value: "difficulty_desc",
                                     },
                                     {
-                                        label: "难度升序",
+                                        label: "Difficulty Ascending",
                                         value: "difficulty_asc",
                                     },
                                 ]}
@@ -235,7 +235,7 @@ export default function Page() {
                             {!challenges?.length && (
                                 <WaterMark
                                     icon={"collections_bookmark"}
-                                    text={"暂无题目"}
+                                    text={"No challenges available"}
                                 />
                             )}
                             <Group gap={"lg"} flex={1}>

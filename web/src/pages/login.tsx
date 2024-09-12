@@ -17,7 +17,7 @@ export default function Page() {
     const authStore = useAuthStore();
 
     useEffect(() => {
-        document.title = `登录 - ${configStore?.pltCfg?.site?.title}`;
+        document.title = `Login - ${configStore?.pltCfg?.site?.title}`;
     }, []);
 
     const [loginLoading, setLoginLoading] = useState(false);
@@ -32,13 +32,13 @@ export default function Page() {
         validate: {
             account: (value) => {
                 if (value === "") {
-                    return "账号不能为空";
+                    return "Account cannot be empty";
                 }
                 return null;
             },
             password: (value) => {
                 if (value === "") {
-                    return "密码不能为空";
+                    return "Password cannot be empty";
                 }
                 return null;
             },
@@ -48,7 +48,7 @@ export default function Page() {
     function handleLogin() {
         setLoginLoading(true);
         login({
-            account: form.getValues().account?.toLocaleLowerCase(),
+            account: form.getValues().account?.toLowerCase(),
             password: form.getValues().password,
         })
             .then((res) => {
@@ -56,16 +56,16 @@ export default function Page() {
                 authStore.setPgsToken(r?.token);
                 authStore.setUser(r?.data);
                 showSuccessNotification({
-                    title: "登录成功",
-                    message: `欢迎进入 ${configStore?.pltCfg?.site?.title}`,
+                    title: "Login Successful",
+                    message: `Welcome to ${configStore?.pltCfg?.site?.title}`,
                 });
                 navigate("/");
                 console.log(res);
             })
             .catch((err) => {
                 showErrNotification({
-                    title: "发生了错误",
-                    message: `登录失败 ${err}`,
+                    title: "An Error Occurred",
+                    message: `Login Failed ${err}`,
                 });
             })
             .finally(() => {
@@ -93,14 +93,14 @@ export default function Page() {
                 >
                     <form onSubmit={form.onSubmit((_) => handleLogin())}>
                         <TextInput
-                            label="用户名/邮箱"
+                            label="Username/Email"
                             size="lg"
                             leftSection={<MDIcon>person</MDIcon>}
                             key={form.key("account")}
                             {...form.getInputProps("account")}
                         />
                         <TextInput
-                            label="密码"
+                            label="Password"
                             type="password"
                             size="lg"
                             leftSection={<MDIcon>lock</MDIcon>}
@@ -115,7 +115,7 @@ export default function Page() {
                             sx={{ marginTop: "2rem", bgcolor: "primary.700" }}
                             type="submit"
                         >
-                            登录
+                            Login
                         </Button>
                     </form>
                     {configStore?.pltCfg?.auth?.registration?.enabled && (
@@ -126,7 +126,7 @@ export default function Page() {
                                 justifyContent: "end",
                             }}
                         >
-                            没有帐号？
+                            Don't have an account?
                             <Box
                                 onClick={() => navigate("/register")}
                                 sx={{
@@ -136,7 +136,7 @@ export default function Page() {
                                     },
                                 }}
                             >
-                                注册
+                                Register
                             </Box>
                         </Box>
                     )}

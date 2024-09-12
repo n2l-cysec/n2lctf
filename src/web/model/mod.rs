@@ -5,6 +5,7 @@ pub mod proxy;
 pub mod submission;
 pub mod team;
 pub mod user;
+pub mod categories;
 
 use serde::{Deserialize, Serialize};
 

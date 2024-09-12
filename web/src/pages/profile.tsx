@@ -47,13 +47,13 @@ export default function Page() {
         },
         validate: zodResolver(
             z.object({
-                nickname: z.string().min(1, { message: "昵称不能为空" }),
-                email: z.string().email({ message: "邮箱格式不正确" }),
+                nickname: z.string().min(1, { message: "Nickname cannot be empty" }),
+                email: z.string().email({ message: "Email format is incorrect" }),
                 password: z
                     .string()
                     .optional()
                     .refine((val) => val === "" || Number(val?.length) >= 6, {
-                        message: "密码长度至少为 6 位",
+                        message: "Password length must be at least 6",
                     }),
             })
         ),
@@ -85,7 +85,7 @@ export default function Page() {
             })
             .catch((e) => {
                 showErrNotification({
-                    message: e.response.data.error || "更新用户失败",
+                    message: e.response.data.error || "Update user failed",
                 });
             })
             .finally(() => {
@@ -105,7 +105,7 @@ export default function Page() {
         saveUserAvatar(Number(user?.id), file!, config)
             .then((_) => {
                 showSuccessNotification({
-                    message: `用户 ${form.getValues().nickname} 头像更新成功`,
+                    message: `user ${form.getValues().nickname} Avatar updated successfully`,
                 });
             })
             .finally(() => {
@@ -196,7 +196,7 @@ export default function Page() {
                                         }
                                         onReject={() => {
                                             showErrNotification({
-                                                message: "文件上传失败",
+                                                message: "File upload failed",
                                             });
                                         }}
                                         h={150}
@@ -228,7 +228,7 @@ export default function Page() {
                                                 <Center>
                                                     <Stack gap={0}>
                                                         <Text size="xl" inline>
-                                                            拖拽或点击上传头像
+                                                        Drag or click to upload avatar
                                                         </Text>
                                                         <Text
                                                             size="sm"
@@ -236,7 +236,7 @@ export default function Page() {
                                                             inline
                                                             mt={7}
                                                         >
-                                                            图片大小不超过 3MB
+                                                            Image size should not exceed 3MB
                                                         </Text>
                                                     </Stack>
                                                 </Center>
@@ -245,7 +245,7 @@ export default function Page() {
                                     </Dropzone>
                                 </Flex>
                                 <TextInput
-                                    label="密码"
+                                    label="password"
                                     size="md"
                                     leftSection={<MDIcon>lock</MDIcon>}
                                     key={form.key("password")}
@@ -259,7 +259,7 @@ export default function Page() {
                                         <MDIcon c={"white"}>check</MDIcon>
                                     }
                                 >
-                                    更新
+                                   renew
                                 </Button>
                             </Flex>
                         </form>

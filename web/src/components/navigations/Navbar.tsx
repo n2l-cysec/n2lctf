@@ -24,17 +24,17 @@ import { Group as UGroup } from "@/types/user";
 
 export const NavItems = [
     {
-        name: "题库",
+        name: "Question Bank",
         path: "/challenges",
         icon: "collections_bookmark",
     },
     {
-        name: "比赛",
+        name: "Competitions",
         path: "/games",
         icon: "flag",
     },
     {
-        name: "团队",
+        name: "Teams",
         path: "/teams",
         icon: "people",
     },
@@ -42,22 +42,22 @@ export const NavItems = [
 
 export const AdminNavItems = [
     {
-        name: "题库",
+        name: "Question Bank",
         path: "/admin/challenges",
         icon: "collections_bookmark",
     },
     {
-        name: "比赛",
+        name: "Competitions",
         path: "/admin/games",
         icon: "flag",
     },
     {
-        name: "团队",
+        name: "Teams",
         path: "/admin/teams",
         icon: "people",
     },
     {
-        name: "用户",
+        name: "Users",
         path: "/admin/users",
         icon: "person",
     },
@@ -173,7 +173,7 @@ export default function Navbar(props: NavbarProps) {
                                     draggable={false}
                                     to={"/admin"}
                                 >
-                                    管理
+                                    Admin
                                 </Button>
                             )}
                         </>
@@ -192,7 +192,7 @@ export default function Navbar(props: NavbarProps) {
                                 draggable={false}
                                 to={"/"}
                             >
-                                返回
+                                Back
                             </Button>
                             {AdminNavItems?.map((item) => (
                                 <Button
@@ -294,16 +294,16 @@ export default function Navbar(props: NavbarProps) {
                                 onClick={() => navigate("/wsrx")}
                                 pos={"relative"}
                             >
-                                连接器设置
+                                Connector Settings
                                 <Tooltip
                                     label={
                                         useWsrxStore.getState().status ===
                                         "online"
-                                            ? "在线"
+                                            ? "Online"
                                             : useWsrxStore.getState().status ===
                                                 "offline"
-                                              ? "离线"
-                                              : "连接中"
+                                              ? "Offline"
+                                              : "Connecting"
                                     }
                                     withArrow
                                     offset={10}
@@ -335,7 +335,7 @@ export default function Navbar(props: NavbarProps) {
                                     }
                                     onClick={() => navigate("/profile")}
                                 >
-                                    个人设置
+                                    Personal Settings
                                 </Menu.Item>
                                 <Menu.Item
                                     color={"red"}
@@ -344,7 +344,7 @@ export default function Navbar(props: NavbarProps) {
                                     }
                                     onClick={logout}
                                 >
-                                    退出登录
+                                    Logout
                                 </Menu.Item>
                             </Flex>
                         </Menu.Dropdown>

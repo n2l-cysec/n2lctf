@@ -7,6 +7,7 @@ pub mod proxy;
 pub mod submission;
 pub mod team;
 pub mod user;
+pub mod categories;
 
 use axum::http::StatusCode;
 use axum::{Json, Router};
@@ -30,6 +31,7 @@ pub async fn router() -> Router {
         .nest("/media", media::router())
         .nest("/proxies", proxy::router())
         .nest("/users", user::router())
+        .nest("/categories", categories::router())
         .nest("/teams", team::router())
         .nest("/challenges", challenge::router())
         .nest("/games", game::router().await)

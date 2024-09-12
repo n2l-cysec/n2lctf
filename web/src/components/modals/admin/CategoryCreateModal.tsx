@@ -46,7 +46,7 @@ export default function CategoryCreateModal(props: CategoryCreateModalProps) {
             color: form.getValues().color,
         }).then((_) => {
             showSuccessNotification({
-                message: `分类 ${form.getValues().name} 创建成功`,
+                message: `Classification ${form.getValues().name} Created successfully`,
             });
             setRefresh();
             modalProps.onClose();
@@ -76,7 +76,7 @@ export default function CategoryCreateModal(props: CategoryCreateModalProps) {
                     >
                         <Flex gap={10} align={"center"}>
                             <MDIcon>collections_bookmark</MDIcon>
-                            <Text fw={600}>创建分类</Text>
+                            <Text fw={600}>Create categories</Text>
                         </Flex>
                         <Divider my={10} />
                         <Box p={10}>
@@ -87,18 +87,18 @@ export default function CategoryCreateModal(props: CategoryCreateModalProps) {
                             >
                                 <Stack gap={10}>
                                     <TextInput
-                                        label="分类名"
+                                        label="Category name"
                                         withAsterisk
                                         key={form.key("name")}
                                         {...form.getInputProps("name")}
                                     />
                                     <ColorInput
-                                        label="颜色"
+                                        label="color"
                                         key={form.key("color")}
                                         {...form.getInputProps("color")}
                                     />
                                     <TextInput
-                                        label="图标"
+                                        label="icon"
                                         withAsterisk
                                         leftSection={
                                             <MDIcon>
@@ -116,7 +116,7 @@ export default function CategoryCreateModal(props: CategoryCreateModalProps) {
                                             <MDIcon c={"white"}>check</MDIcon>
                                         }
                                     >
-                                        创建
+                                        create
                                     </Button>
                                 </Flex>
                             </form>

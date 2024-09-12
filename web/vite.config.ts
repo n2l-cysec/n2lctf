@@ -6,7 +6,7 @@ import path from "path";
 
 export default defineConfig(({ mode }) => {
     const TARGET = mode === "development" ? "http://localhost:8888" : "/";
-
+    console.log(`mode: ${mode}, target: ${TARGET}`);
     return {
         server: {
             proxy: {

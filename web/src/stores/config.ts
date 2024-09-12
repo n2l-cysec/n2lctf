@@ -14,8 +14,8 @@ export const useConfigStore = create<ConfigState>()(
         (set, _get) => ({
             pltCfg: {
                 site: {
-                    title: "Cloudsdale",
-                    description: "Hack for fun not for profit",
+                    title: "N2LCTF",
+                    description: "Train till failure",
                 },
             },
             setPltCfg: (pltCfg) => set({ pltCfg }),

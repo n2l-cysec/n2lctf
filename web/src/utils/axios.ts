@@ -14,8 +14,10 @@ export function c(object: Object) {
 }
 
 export function api(): AxiosInstance {
+    const mode = process.env.NODE_ENV;
+    const TARGET = mode === "development" ? "http://localhost:8888/api" : "/api";
     const instance = axios.create({
-        baseURL: "/api",
+        baseURL: TARGET,
         headers: {
             Authorization: useAuthStore.getState()?.pgsToken,
         },

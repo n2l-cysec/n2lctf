@@ -57,14 +57,14 @@ export default function Page() {
     }, [refresh]);
 
     useEffect(() => {
-        document.title = `团队 - ${configStore?.pltCfg?.site?.title}`;
+        document.title = `Teams - ${configStore?.pltCfg?.site?.title}`;
     }, []);
 
     return (
         <>
             <Stack mx={150} my={36} pos={"relative"}>
                 {!teams?.length && (
-                    <WaterMark icon={"people"} text={"暂无团队"} />
+                    <WaterMark icon={"people"} text={"No Teams Available"} />
                 )}
                 <Flex justify={"end"} gap={15}>
                     <Button
@@ -72,14 +72,14 @@ export default function Page() {
                         leftSection={<MDIcon c={"white"}>waving_hand</MDIcon>}
                         onClick={joinOpen}
                     >
-                        加入团队
+                        Join Team
                     </Button>
                     <Button
                         size="lg"
                         leftSection={<MDIcon c={"white"}>group_add</MDIcon>}
                         onClick={createOpen}
                     >
-                        创建团队
+                        Create Team
                     </Button>
                 </Flex>
                 <Box mih={"calc(100vh - 250px)"} pos={"relative"} my={20}>
