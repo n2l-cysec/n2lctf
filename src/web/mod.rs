@@ -4,9 +4,9 @@ pub mod model;
 pub mod router;
 pub mod traits;
 
-use std::sync::OnceLock;
+use std::{net::SocketAddr, sync::OnceLock};
 
-use axum::{middleware::from_fn, Router};
+use axum::{ extract::connect_info::IntoMakeServiceWithConnectInfo, middleware::from_fn, Router};
 use reqwest::Method;
 use tower_http::{
     cors::{Any, CorsLayer},
@@ -40,6 +40,8 @@ pub async fn init() {
     APP.set(app).unwrap();
 }
 
-pub fn get_app() -> Router {
-    return APP.get().unwrap().clone();
+pub fn get_app() -> IntoMakeServiceWithConnectInfo<Router, std::net::SocketAddr>{
+    let app = APP.get().unwrap().clone();
+    return app.into_make_service_with_connect_info::<SocketAddr>();
+    // return APP.get().unwrap().clone();
 }

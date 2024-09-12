@@ -1,16 +1,17 @@
-use std::net::SocketAddr;
-
 use argon2::{
     password_hash::{rand_core::OsRng, SaltString},
     Argon2, PasswordHash, PasswordHasher, PasswordVerifier,
 };
 use axum::{
     body::Body,
-    extract::{ConnectInfo, Multipart, Path, Query},
-    http::{HeaderMap, Response, StatusCode},
+    extract::{ Multipart, Path, Query},
+    http::{Response, StatusCode},
     response::IntoResponse,
-    Extension, Json,
+     Json,
 };
+
+use axum::extract::Extension;
+
 use mime::Mime;
 use sea_orm::{
     prelude::Expr, sea_query::Func, ActiveModelTrait, ActiveValue::NotSet, Condition, EntityTrait,
@@ -215,7 +216,7 @@ pub async fn register(
 ) -> Result<impl IntoResponse, WebError> {
     body.email = body.email.to_lowercase();
     body.username = body.username.to_lowercase();
-
+    
     let is_conflict = crate::model::user::Entity::find()
         .filter(
             Condition::any()

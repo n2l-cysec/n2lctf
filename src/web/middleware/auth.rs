@@ -15,7 +15,7 @@ use serde_json::json;
 
 use crate::{util, web::traits::Ext};
 
-pub async fn jwt(mut req: Request<Body>, next: Next) -> Result<Response, WebError> {
+pub async fn jwt(ConnectInfo(addr): ConnectInfo<SocketAddr>,mut req: Request<Body>, next: Next) -> Result<Response, WebError> {
     let token = req
         .headers()
         .get("Authorization")
@@ -25,8 +25,16 @@ pub async fn jwt(mut req: Request<Body>, next: Next) -> Result<Response, WebErro
 
     let decoding_key = DecodingKey::from_secret(util::jwt::get_secret().await.as_bytes());
     let validation = Validation::default();
-
     let result = decode::<util::jwt::Claims>(token, &decoding_key, &validation);
+
+    let client_ip = req
+        .headers()
+        .get("X-Forwarded-For")
+        .and_then(|header_value| header_value.to_str().ok().map(|s| s.to_string()))
+        // debug
+        .unwrap_or_else(|| addr.ip().to_owned().to_string());
+    
+    println!("client_ip: {}", client_ip);
 
     if let Ok(token_data) = result {
         let result = crate::model::user::Entity::find_by_id(token_data.claims.id)
@@ -56,17 +64,14 @@ pub async fn jwt(mut req: Request<Body>, next: Next) -> Result<Response, WebErro
             return Err(WebError::Forbidden(String::from("forbidden")));
         }
 
-        let ConnectInfo(addr) = req.extensions().get::<ConnectInfo<SocketAddr>>().unwrap();
-
-        let client_ip = req
-            .headers()
-            .get("X-Forwarded-For")
-            .and_then(|header_value| header_value.to_str().ok().map(|s| s.to_string()))
-            .unwrap_or_else(|| addr.ip().to_owned().to_string());
-
         req.extensions_mut().insert(Ext {
             operator: Some(user.clone()),
             client_ip: client_ip,
+        });
+    } else {
+        req.extensions_mut().insert(Ext {
+            operator: None,
+            client_ip: client_ip, // You may still want the client IP here
         });
     }
 

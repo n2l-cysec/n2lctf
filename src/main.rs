@@ -43,14 +43,14 @@ async fn bootstrap() {
         config::get_config().axum.host,
         config::get_config().axum.port
     );
-    let listener = tokio::net::TcpListener::bind(&addr).await;
+    let listener = tokio::net::TcpListener::bind(&addr).await.unwrap();
 
     info!(
         "Cloudsdale service has been started at {}. Enjoy your hacking challenges!",
         &addr
     );
 
-    axum::serve(listener.unwrap(), web::get_app())
+    axum::serve(listener, web::get_app())
         .await
         .unwrap();
 }

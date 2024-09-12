@@ -23,6 +23,7 @@ pub async fn init() {
         crate::config::get_config().db.port,
         crate::config::get_config().db.dbname,
     );
+    info!("Database connection url: {}", url);
     let mut opt = ConnectOptions::new(url);
     opt.max_connections(100)
         .min_connections(5)
