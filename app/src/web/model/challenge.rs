@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
 use validator::Validate;
 
-use crate::model::challenge::Category;
+// use crate::model::challenge::Category;
 
 use super::Metadata;
 
@@ -11,7 +11,7 @@ use super::Metadata;
 pub struct GetRequest {
     pub id: Option<i64>,
     pub title: Option<String>,
-    pub category: Option<Category>,
+    pub category_id: Option<i64>,
     pub tags: Option<Vec<String>>,
     pub is_practicable: Option<bool>,
     pub is_dynamic: Option<bool>,
@@ -53,7 +53,7 @@ pub struct GetStatusResponse {
 pub struct CreateRequest {
     pub title: String,
     pub description: String,
-    pub category: Category,
+    pub category_id: i64,
     pub tags: Option<Vec<String>>,
     pub is_practicable: Option<bool>,
     pub is_dynamic: Option<bool>,
@@ -79,7 +79,7 @@ pub struct UpdateRequest {
     pub id: Option<i64>,
     pub title: Option<String>,
     pub description: Option<String>,
-    pub category: Option<Category>,
+    pub category_id: Option<i64>,
     pub tags: Option<Vec<String>>,
     pub is_practicable: Option<bool>,
     pub is_dynamic: Option<bool>,

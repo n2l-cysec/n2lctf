@@ -53,6 +53,11 @@ pub async fn delete_by_id(id: i64) -> Result<(), DbErr> {
         })?;
     return Ok(());
 }
+
+pub async fn get_by_id(id: i64) -> Result<Option<crate::model::categories::Model>, DbErr> {
+    return crate::model::categories::Entity::find_by_id(id).one(&get_db()).await;
+}
+
 pub async fn show_all(
     // id: Option<i64>
 ) -> Result<(Vec<crate::model::categories::Model>, u64), DbErr> {

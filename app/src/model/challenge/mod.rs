@@ -1,4 +1,3 @@
-pub mod category;
 pub mod env;
 pub mod flag;
 
@@ -9,7 +8,6 @@ use serde::{Deserialize, Serialize};
 use crate::database::get_db;
 
 use super::{game, game_challenge, pod, submission};
-pub use category::Category;
 pub use env::Env;
 pub use flag::Flag;
 
@@ -20,7 +18,8 @@ pub struct Model {
     pub id: i64,
     pub title: String,
     pub description: Option<String>,
-    pub category: Category,
+    pub category_id: i64,
+    #[sea_orm(default_value = "[]")]
     pub tags: Vec<String>,
     #[sea_orm(default_value = false)]
     pub is_dynamic: bool,
@@ -106,7 +105,7 @@ impl ActiveModelBehavior for ActiveModel {
 }
 
 pub async fn find(
-    id: Option<i64>, title: Option<String>, category: Option<Category>,
+    id: Option<i64>, title: Option<String>, category_id: Option<i64>,
     is_practicable: Option<bool>, is_dynamic: Option<bool>, page: Option<u64>, size: Option<u64>,
 ) -> Result<(Vec<crate::model::challenge::Model>, u64), DbErr> {
     let mut query = crate::model::challenge::Entity::find();
@@ -119,8 +118,8 @@ pub async fn find(
         query = query.filter(crate::model::challenge::Column::Title.contains(title));
     }
 
-    if let Some(category) = category {
-        query = query.filter(crate::model::challenge::Column::Category.eq(category));
+    if let Some(category) = category_id {
+        query = query.filter(crate::model::categories::Column::Id.eq(category_id));
     }
 
     if let Some(is_practicable) = is_practicable {
