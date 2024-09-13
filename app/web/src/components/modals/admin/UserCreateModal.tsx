@@ -43,11 +43,11 @@ export default function UserCreateModal(props: UserCreateModalProps) {
             z.object({
                 username: z.string().regex(/^[a-z0-9_]{4,16}$/, {
                     message:
-                        "用户名只能包含小写字母、数字和下划线，长度为 4-16 位",
+                        "Usernames can only contain lowercase letters, numbers, and underscores, and must be 4-16 characters long.",
                 }),
-                nickname: z.string().min(1, { message: "昵称不能为空" }),
-                email: z.string().email({ message: "邮箱格式不正确" }),
-                password: z.string().min(6, { message: "密码长度至少为 6 位" }),
+                nickname: z.string().min(1, { message: "Nickname cannot be empty" }),
+                email: z.string().email({ message: "The email format is incorrect" }),
+                password: z.string().min(6, { message: "Password must be at least 6 characters long" }),
             })
         ),
     });
@@ -62,13 +62,13 @@ export default function UserCreateModal(props: UserCreateModalProps) {
         })
             .then((_) => {
                 showSuccessNotification({
-                    message: `用户 ${form.getValues().username} 创建成功`,
+                    message: `用户 ${form.getValues().username} Create Success`,
                 });
                 setRefresh();
             })
             .catch((e) => {
                 showErrNotification({
-                    message: e.response.data.error || "创建用户失败",
+                    message: e.response.data.error || "Create user failed",
                 });
             })
             .finally(() => {
@@ -100,7 +100,7 @@ export default function UserCreateModal(props: UserCreateModalProps) {
                     >
                         <Flex gap={10} align={"center"}>
                             <MDIcon>person_add</MDIcon>
-                            <Text fw={600}>创建用户</Text>
+                            <Text fw={600}>Create User</Text>
                         </Flex>
                         <Divider my={10} />
                         <Box p={10}>
@@ -112,7 +112,7 @@ export default function UserCreateModal(props: UserCreateModalProps) {
                                 <Stack gap={10}>
                                     <Flex gap={10} w={"100%"}>
                                         <TextInput
-                                            label="用户名"
+                                            label="username"
                                             size="md"
                                             w={"40%"}
                                             leftSection={
@@ -122,7 +122,7 @@ export default function UserCreateModal(props: UserCreateModalProps) {
                                             {...form.getInputProps("username")}
                                         />
                                         <TextInput
-                                            label="昵称"
+                                            label="Nick name"
                                             size="md"
                                             w={"60%"}
                                             key={form.key("nickname")}
@@ -130,14 +130,14 @@ export default function UserCreateModal(props: UserCreateModalProps) {
                                         />
                                     </Flex>
                                     <Select
-                                        label="权限组"
+                                        label="Permission Group"
                                         data={[
                                             {
-                                                label: "管理员",
+                                                label: "administrator",
                                                 value: UGroup.Admin.toString(),
                                             },
                                             {
-                                                label: "普通用户",
+                                                label: "Normal User",
                                                 value: UGroup.User.toString(),
                                             },
                                         ]}
@@ -154,14 +154,14 @@ export default function UserCreateModal(props: UserCreateModalProps) {
                                         }}
                                     />
                                     <TextInput
-                                        label="邮箱"
+                                        label="Email"
                                         size="md"
                                         leftSection={<MDIcon>email</MDIcon>}
                                         key={form.key("email")}
                                         {...form.getInputProps("email")}
                                     />
                                     <TextInput
-                                        label="密码"
+                                        label="password"
                                         size="md"
                                         leftSection={<MDIcon>lock</MDIcon>}
                                         key={form.key("password")}
@@ -175,7 +175,7 @@ export default function UserCreateModal(props: UserCreateModalProps) {
                                             <MDIcon c={"white"}>check</MDIcon>
                                         }
                                     >
-                                        创建
+                                        Create
                                     </Button>
                                 </Flex>
                             </form>

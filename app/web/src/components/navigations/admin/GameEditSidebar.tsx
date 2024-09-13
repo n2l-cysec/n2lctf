@@ -19,7 +19,7 @@ export default function GameEditSidebar(props: GameEditSidebarProps) {
                 leftSection={<MDIcon c={"white"}>arrow_back</MDIcon>}
                 onClick={() => navigate(`/admin/games`)}
             >
-                返回上级
+                Return to previous page
             </Button>
             <Divider my={5} />
             <Stack gap={10}>
@@ -32,7 +32,7 @@ export default function GameEditSidebar(props: GameEditSidebarProps) {
                         </MDIcon>
                     }
                 >
-                    基本信息
+                    Basic Information
                 </Button>
                 <Button
                     variant={path === "/challenges" ? "filled" : "subtle"}
@@ -43,7 +43,7 @@ export default function GameEditSidebar(props: GameEditSidebarProps) {
                         </MDIcon>
                     }
                 >
-                    题目
+                    subject
                 </Button>
                 <Button
                     variant={path === "/teams" ? "filled" : "subtle"}
@@ -54,7 +54,7 @@ export default function GameEditSidebar(props: GameEditSidebarProps) {
                         </MDIcon>
                     }
                 >
-                    参赛团队
+                    Teams
                 </Button>
                 <Button
                     variant={path === "/submissions" ? "filled" : "subtle"}
@@ -65,7 +65,7 @@ export default function GameEditSidebar(props: GameEditSidebarProps) {
                         </MDIcon>
                     }
                 >
-                    提交记录
+                    Submit Records
                 </Button>
                 <Button
                     variant={path === "/notices" ? "filled" : "subtle"}
@@ -76,7 +76,7 @@ export default function GameEditSidebar(props: GameEditSidebarProps) {
                         </MDIcon>
                     }
                 >
-                    公告
+                    announcement
                 </Button>
             </Stack>
         </Stack>

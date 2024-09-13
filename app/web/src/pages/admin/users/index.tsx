@@ -97,13 +97,13 @@ export default function Page() {
                         <Text fw={600}>删除用户</Text>
                     </Flex>
                     <Divider my={10} />
-                    <Text>你确定要删除用户 {user?.nickname} 吗？</Text>
+                    <Text>你Sure要删除用户 {user?.nickname} 吗？</Text>
                 </>
             ),
             withCloseButton: false,
             labels: {
-                confirm: "确定",
-                cancel: "取消",
+                confirm: "Sure",
+                cancel: "Cancel",
             },
             confirmProps: {
                 color: "red",

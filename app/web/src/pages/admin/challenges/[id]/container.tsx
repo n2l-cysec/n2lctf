@@ -65,7 +65,7 @@ function Page() {
             duration: form.getValues().duration,
         }).then((_) => {
             showSuccessNotification({
-                message: "镜像更新成功",
+                message: "Image Update Success",
             });
             setRefresh((prev) => prev + 1);
         });
@@ -86,7 +86,7 @@ function Page() {
     }, [refresh]);
 
     useEffect(() => {
-        document.title = `容器 - ${challenge?.title}`;
+        document.title = `Container - ${challenge?.title}`;
     }, [challenge]);
 
     return (
@@ -97,7 +97,7 @@ function Page() {
                         <Group>
                             <MDIcon>deployed_code_update</MDIcon>
                             <Text fw={700} size="xl">
-                                容器参数
+                                Container Parameters
                             </Text>
                         </Group>
                         <Divider />
@@ -106,9 +106,9 @@ function Page() {
                         <SimpleGrid cols={2}>
                             <Checkbox
                                 my={"auto"}
-                                label="是否启用容器"
+                                label="Enable Container"
                                 description={
-                                    "题目是否需要启用容器环境进行题目分发"
+                                    "Whether the container environment needs to be enabled for subject distribution"
                                 }
                                 checked={form.getValues().is_dynamic}
                                 onChange={(e) =>
@@ -119,28 +119,28 @@ function Page() {
                                 }
                             />
                             <TextInput
-                                label="镜像名"
-                                description="例如 nginx:latest"
+                                label="Image Name"
+                                description="e.g., nginx:latest"
                                 key={form.key("image_name")}
                                 {...form.getInputProps("image_name")}
                             />
                         </SimpleGrid>
                         <SimpleGrid cols={3}>
                             <NumberInput
-                                label="CPU 限制"
-                                description="CPU 核心限制（核）"
+                                label="CPU Limit"
+                                description="CPU core limit (cores)"
                                 key={form.key("cpu_limit")}
                                 {...form.getInputProps("cpu_limit")}
                             />
                             <NumberInput
-                                label="内存限制"
-                                description="内存大小限制（MB）"
+                                label="Memory Limit"
+                                description="Memory size limit (MB)"
                                 key={form.key("memory_limit")}
                                 {...form.getInputProps("memory_limit")}
                             />
                             <NumberInput
-                                label="持续时间"
-                                description="动态容器持续时间（秒）"
+                                label="Duration"
+                                description="Dynamic container duration (seconds)"
                                 key={form.key("duration")}
                                 {...form.getInputProps("duration")}
                             />
@@ -151,10 +151,10 @@ function Page() {
                             <Group>
                                 <MDIcon>upgrade</MDIcon>
                                 <Text fw={700} size="xl">
-                                    端口映射
+                                    Port Mapping
                                 </Text>
                             </Group>
-                            <Tooltip label="添加端口映射" withArrow>
+                            <Tooltip label="Add Port Mapping" withArrow>
                                 <ActionIcon
                                     onClick={() => setPorts([...ports, 0])}
                                 >
@@ -178,7 +178,7 @@ function Page() {
                                     }
                                 />
                                 <Tooltip
-                                    label="删除端口映射"
+                                    label="Delete Port Mapping"
                                     withArrow
                                     onClick={() => {
                                         const newPorts = [...ports];
@@ -198,10 +198,10 @@ function Page() {
                             <Group>
                                 <MDIcon>language</MDIcon>
                                 <Text fw={700} size="xl">
-                                    环境变量
+                                    Environment Variables
                                 </Text>
                             </Group>
-                            <Tooltip label="添加环境变量" withArrow>
+                            <Tooltip label="Add Environment Variable" withArrow>
                                 <ActionIcon
                                     onClick={() => {
                                         setEnvs([
@@ -225,7 +225,7 @@ function Page() {
                             >
                                 <Group gap={10}>
                                     <TextInput
-                                        label="键"
+                                        label="Key"
                                         value={env?.key}
                                         onChange={(e) =>
                                             setEnvs(
@@ -242,7 +242,7 @@ function Page() {
                                         }
                                     />
                                     <TextInput
-                                        label="值"
+                                        label="Value"
                                         value={env?.value}
                                         onChange={(e) =>
                                             setEnvs(
@@ -260,7 +260,7 @@ function Page() {
                                     />
                                 </Group>
                                 <Tooltip
-                                    label="删除环境变量"
+                                    label="Delete Environment Variable"
                                     withArrow
                                     onClick={() => {
                                         const newEnvs = [...envs];
@@ -280,7 +280,7 @@ function Page() {
                             type="submit"
                             leftSection={<MDIcon c={"white"}>check</MDIcon>}
                         >
-                            保存
+                            Save
                         </Button>
                     </Flex>
                 </Stack>

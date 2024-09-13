@@ -17,7 +17,7 @@ export default function Page() {
     const configStore = useConfigStore();
 
     useEffect(() => {
-        document.title = `注册 - ${configStore?.pltCfg?.site?.title}`;
+        document.title = `Register - ${configStore?.pltCfg?.site?.title}`;
     }, []);
 
     const [registerLoading, setRegisterLoading] = useState(false);
@@ -36,11 +36,11 @@ export default function Page() {
             z.object({
                 username: z.string().regex(/^[a-z0-9_]{4,16}$/, {
                     message:
-                        "用户名只能包含小写字母、数字和下划线，长度为 4-16 位",
+                        "Username can only contain lowercase letters, numbers, and underscores, and must be 4-16 characters long",
                 }),
-                nickname: z.string().min(1, { message: "昵称不能为空" }),
-                email: z.string().email({ message: "邮箱格式不正确" }),
-                password: z.string().min(6, { message: "密码长度至少为 6 位" }),
+                nickname: z.string().min(1, { message: "Nickname cannot be empty" }),
+                email: z.string().email({ message: "Invalid email format" }),
+                password: z.string().min(6, { message: "Password must be at least 6 characters long" }),
             })
         ),
     });
@@ -51,8 +51,8 @@ export default function Page() {
             !form.getValues().token
         ) {
             showErrNotification({
-                title: "注册失败",
-                message: "请完成验证码验证",
+                title: "Registration Failed",
+                message: "Please complete the CAPTCHA verification",
             });
             return;
         }
@@ -66,8 +66,8 @@ export default function Page() {
         })
             .then((_) => {
                 showSuccessNotification({
-                    title: "注册成功",
-                    message: "请登录",
+                    title: "Registration Successful",
+                    message: "Please log in",
                 });
                 redirect("/login");
             })
@@ -75,8 +75,8 @@ export default function Page() {
                 switch (err.response?.status) {
                     case 400:
                         showErrNotification({
-                            title: "注册失败",
-                            message: "用户名或邮箱已被注册",
+                            title: "Registration Failed",
+                            message: "Username or email is already registered",
                         });
                         break;
                 }
@@ -102,14 +102,14 @@ export default function Page() {
                         <Stack>
                             <Group>
                                 <TextInput
-                                    label="用户名"
+                                    label="Username"
                                     size="lg"
                                     leftSection={<MDIcon>person</MDIcon>}
                                     key={form.key("username")}
                                     {...form.getInputProps("username")}
                                 />
                                 <TextInput
-                                    label="昵称"
+                                    label="Nickname"
                                     size="lg"
                                     leftSection={<MDIcon>person</MDIcon>}
                                     key={form.key("nickname")}
@@ -117,14 +117,14 @@ export default function Page() {
                                 />
                             </Group>
                             <TextInput
-                                label="邮箱"
+                                label="Email"
                                 size="lg"
                                 leftSection={<MDIcon>email</MDIcon>}
                                 key={form.key("email")}
                                 {...form.getInputProps("email")}
                             />
                             <TextInput
-                                label="密码"
+                                label="Password"
                                 type="password"
                                 size="lg"
                                 leftSection={<MDIcon>lock</MDIcon>}
@@ -175,7 +175,7 @@ export default function Page() {
                                 sx={{ bgcolor: "primary.700" }}
                                 type="submit"
                             >
-                                注册
+                                Register
                             </Button>
                         </Stack>
                     </form>
@@ -186,7 +186,7 @@ export default function Page() {
                             justifyContent: "end",
                         }}
                     >
-                        已有帐号？
+                        Already have an account?
                         <Box
                             onClick={() => redirect("/login")}
                             sx={{
@@ -196,7 +196,7 @@ export default function Page() {
                                 },
                             }}
                         >
-                            登录
+                            Log in
                         </Box>
                     </Box>
                 </Stack>

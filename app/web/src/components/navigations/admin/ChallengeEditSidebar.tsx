@@ -19,7 +19,7 @@ export default function ChallengeEditSidebar(props: ChallengeEditSidebarProps) {
                 leftSection={<MDIcon c={"white"}>arrow_back</MDIcon>}
                 onClick={() => navigate(`/admin/challenges`)}
             >
-                返回上级
+                Return to previous page
             </Button>
             <Divider my={5} />
             <Stack gap={10}>
@@ -32,7 +32,7 @@ export default function ChallengeEditSidebar(props: ChallengeEditSidebarProps) {
                         </MDIcon>
                     }
                 >
-                    基本信息
+                    Basic Information
                 </Button>
                 <Button
                     variant={path === "/flags" ? "filled" : "subtle"}
@@ -56,7 +56,7 @@ export default function ChallengeEditSidebar(props: ChallengeEditSidebarProps) {
                         </MDIcon>
                     }
                 >
-                    容器
+                    container
                 </Button>
                 <Button
                     variant={path === "/submissions" ? "filled" : "subtle"}
@@ -69,7 +69,7 @@ export default function ChallengeEditSidebar(props: ChallengeEditSidebarProps) {
                         </MDIcon>
                     }
                 >
-                    提交记录
+                    Submit Records
                 </Button>
             </Stack>
         </Stack>

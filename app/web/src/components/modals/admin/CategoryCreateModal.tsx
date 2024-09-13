@@ -46,7 +46,7 @@ export default function CategoryCreateModal(props: CategoryCreateModalProps) {
             color: form.getValues().color,
         }).then((_) => {
             showSuccessNotification({
-                message: `Classification ${form.getValues().name} Created successfully`,
+                message: `Category ${form.getValues().name} Created successfully`,
             });
             setRefresh();
             modalProps.onClose();

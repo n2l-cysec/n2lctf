@@ -53,13 +53,13 @@ export default function ChallengeFlagAccordion(
                         <Text fw={600}>删除 Flag</Text>
                     </Flex>
                     <Divider my={10} />
-                    <Text>你确定要删除 Flag {form.getValues().value} 吗？</Text>
+                    <Text>你Sure要删除 Flag {form.getValues().value} 吗？</Text>
                 </>
             ),
             withCloseButton: false,
             labels: {
-                confirm: "确定",
-                cancel: "取消",
+                confirm: "Sure",
+                cancel: "Cancel",
             },
             confirmProps: {
                 color: "red",
@@ -131,7 +131,7 @@ export default function ChallengeFlagAccordion(
                             />
                             <TextInput
                                 label="环境变量"
-                                description="当题目启用动态容器时，可设置将 Flag 以容器环境变量的形式注入容器"
+                                description="当subject启用动态容器时，可设置将 Flag 以容器环境变量的形式注入容器"
                                 key={form.key("env")}
                                 {...form.getInputProps("env")}
                             />
@@ -150,7 +150,7 @@ export default function ChallengeFlagAccordion(
                                 type="submit"
                                 leftSection={<MDIcon c={"white"}>check</MDIcon>}
                             >
-                                保存
+                                save
                             </Button>
                         </Flex>
                     </Stack>

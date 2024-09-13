@@ -104,25 +104,25 @@ export default function GameNoticeArea() {
                                 )}
                                 {notice?.type === "first_blood" && (
                                     <Box>
-                                        恭喜 {notice?.team?.name} 斩获{" "}
-                                        {notice?.challenge?.title} 一血
+                                        Congratulations to {notice?.team?.name} for winning {" "}
+                                        {notice?.challenge?.title} First Blood
                                     </Box>
                                 )}
                                 {notice?.type === "second_blood" && (
                                     <Box>
-                                        恭喜 {notice?.team?.name} 斩获{" "}
-                                        {notice?.challenge?.title} 二血
+                                        Congratulations to {notice?.team?.name} for winning {" "}
+                                        {notice?.challenge?.title} Second Blood
                                     </Box>
                                 )}
                                 {notice?.type === "third_blood" && (
                                     <Box>
-                                        恭喜 {notice?.team?.name} 斩获{" "}
-                                        {notice?.challenge?.title} 三血
+                                        Congratulations to {notice?.team?.name} for winning {" "}
+                                        {notice?.challenge?.title} Three Bloods
                                     </Box>
                                 )}
                                 {notice?.type === "new_challenge" && (
                                     <Box>
-                                        新增题目 {notice?.challenge?.title}
+                                        Add subject {notice?.challenge?.title}
                                     </Box>
                                 )}
                             </Box>

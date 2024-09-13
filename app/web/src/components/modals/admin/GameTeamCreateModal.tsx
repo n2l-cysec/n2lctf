@@ -47,7 +47,7 @@ export default function GameTeamCreateModal(props: GameTeamCreateModalProps) {
         validate: {
             team_id: (value) => {
                 if (value === 0) {
-                    return "团队不能为空";
+                    return "Team cannot be empty";
                 }
                 return null;
             },
@@ -67,13 +67,13 @@ export default function GameTeamCreateModal(props: GameTeamCreateModalProps) {
         })
             .then((_) => {
                 showSuccessNotification({
-                    message: `团队 ${team?.name} 添加成功`,
+                    message: `Team ${team?.name} added successfully`,
                 });
                 setRefresh();
             })
             .catch((e) => {
                 showErrNotification({
-                    message: e.response.data.msg || "添加团队失败",
+                    message: e.response.data.msg || "Failed to add team",
                 });
             })
             .finally(() => {
@@ -106,7 +106,7 @@ export default function GameTeamCreateModal(props: GameTeamCreateModalProps) {
                     >
                         <Flex gap={10} align={"center"}>
                             <MDIcon>people</MDIcon>
-                            <Text fw={600}>添加团队</Text>
+                            <Text fw={600}>Add a team</Text>
                         </Flex>
                         <Divider my={10} />
                         <Box p={10}>
@@ -116,7 +116,7 @@ export default function GameTeamCreateModal(props: GameTeamCreateModalProps) {
                                 )}
                             >
                                 <Stack gap={10}>
-                                    <Input.Wrapper label="团队" size="md">
+                                    <Input.Wrapper label="team" size="md">
                                         <Button
                                             size="lg"
                                             onClick={teamSelectOpen}
@@ -145,7 +145,7 @@ export default function GameTeamCreateModal(props: GameTeamCreateModalProps) {
                                                     </Group>
                                                 </>
                                             )}
-                                            {!team && "选择团队"}
+                                            {!team && "Select Team"}
                                         </Button>
                                     </Input.Wrapper>
                                 </Stack>
@@ -156,7 +156,7 @@ export default function GameTeamCreateModal(props: GameTeamCreateModalProps) {
                                             <MDIcon c={"white"}>check</MDIcon>
                                         }
                                     >
-                                        创建
+                                        Create
                                     </Button>
                                 </Flex>
                             </form>

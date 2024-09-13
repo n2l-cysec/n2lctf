@@ -66,12 +66,12 @@ export default function ChallengeSelectModal(props: ChallengeSelectModalProps) {
                     >
                         <Flex gap={10} align={"center"}>
                             <MDIcon>collections_bookmark</MDIcon>
-                            <Text fw={600}>选择题目</Text>
+                            <Text fw={600}>选择subject</Text>
                         </Flex>
                         <Divider my={10} />
                         <Stack p={10} gap={20} align="center">
                             <TextInput
-                                label="搜索"
+                                label="Search"
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
                                 w={"100%"}

@@ -1,10 +1,8 @@
-use std::collections::HashMap;
 
 use serde::{Deserialize, Serialize};
 use validator::Validate;
 
 
-use super::Metadata;
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct GetRequest {
@@ -18,19 +16,8 @@ pub struct GetResponse {
     pub total: u64,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct StatusResponse {
-    pub is_solved: bool,
-    pub solved_times: i64,
-    pub pts: i64,
-    pub bloods: Vec<crate::model::submission::Model>,
-}
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct GetStatusResponse {
-    pub code: u16,
-    pub data: HashMap<i64, StatusResponse>,
-}
+
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CreateRequest {
@@ -64,21 +51,5 @@ pub struct UpdateResponse {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct DeleteResponse {
-    pub code: u16,
-}
-
-#[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct GetAttachmentMetadataResponse {
-    pub code: u16,
-    pub data: Metadata,
-}
-
-#[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct SaveAttachmentResponse {
-    pub code: u16,
-}
-
-#[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct DeleteAttachmentResponse {
     pub code: u16,
 }

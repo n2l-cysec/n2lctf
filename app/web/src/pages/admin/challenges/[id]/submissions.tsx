@@ -50,7 +50,7 @@ function Page() {
             1,
             {
                 color: "green",
-                label: "Accpet",
+                label: "Accepted",
             },
         ],
         [
@@ -109,7 +109,7 @@ function Page() {
                 id: submission?.id,
             }).then(() => {
                 showSuccessNotification({
-                    message: "提交记录已移除",
+                    message: "Submission record removed",
                 });
                 setRefresh((prev) => prev + 1);
             });
@@ -123,16 +123,16 @@ function Page() {
                 <>
                     <Flex gap={10} align={"center"}>
                         <MDIcon>verified</MDIcon>
-                        <Text fw={600}>删除提交记录</Text>
+                        <Text fw={600}>Delete Submission Record</Text>
                     </Flex>
                     <Divider my={10} />
-                    <Text>你确定要删除提交记录 {submission?.flag} 吗？</Text>
+                    <Text>Are you sure you want to delete the submission record for {submission?.flag}?</Text>
                 </>
             ),
             withCloseButton: false,
             labels: {
-                confirm: "确定",
-                cancel: "取消",
+                confirm: "Yes",
+                cancel: "No",
             },
             confirmProps: {
                 color: "red",
@@ -153,7 +153,7 @@ function Page() {
     }, []);
 
     useEffect(() => {
-        document.title = `提交记录 - ${challenge?.title}`;
+        document.title = `Submission Records - ${challenge?.title}`;
     }, [challenge]);
 
     return (
@@ -163,7 +163,7 @@ function Page() {
                     <Group>
                         <MDIcon>verified</MDIcon>
                         <Text fw={700} size="xl">
-                            提交记录
+                            Submission Records
                         </Text>
                     </Group>
                     <Divider />
@@ -179,10 +179,10 @@ function Page() {
                             >
                                 <Table.Th />
                                 <Table.Th>Flag</Table.Th>
-                                <Table.Th>相关比赛</Table.Th>
-                                <Table.Th>相关团队</Table.Th>
-                                <Table.Th>提交者</Table.Th>
-                                <Table.Th>提交时间</Table.Th>
+                                <Table.Th>Related Game</Table.Th>
+                                <Table.Th>Related Team</Table.Th>
+                                <Table.Th>Submitter</Table.Th>
+                                <Table.Th>Submission Time</Table.Th>
                                 <Table.Th />
                             </Table.Tr>
                         </Table.Thead>
@@ -215,7 +215,7 @@ function Page() {
                                         {submission?.flag}
                                     </Table.Td>
                                     <Table.Td>
-                                        {submission?.game?.title || "练习场"}
+                                        {submission?.game?.title || "Practice Arena"}
                                     </Table.Td>
                                     <Table.Td>
                                         {submission?.team?.name ? (
@@ -230,7 +230,7 @@ function Page() {
                                                 {submission?.team?.name}
                                             </Group>
                                         ) : (
-                                            "无"
+                                            "None"
                                         )}
                                     </Table.Td>
                                     <Table.Td>
@@ -256,7 +256,7 @@ function Page() {
                                         <Group>
                                             <Tooltip
                                                 withArrow
-                                                label="删除提交记录"
+                                                label="Delete Submission Record"
                                             >
                                                 <ActionIcon
                                                     onClick={() =>

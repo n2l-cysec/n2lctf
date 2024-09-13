@@ -57,8 +57,8 @@ export default function GameChallengeAccordion({
             .then((_) => {
                 showSuccessNotification({
                     message: !gameChallenge?.is_enabled
-                        ? `题目 ${gameChallenge?.challenge?.title} 已投放至比赛`
-                        : `题目 ${gameChallenge?.challenge?.title} 已从比赛移除`,
+                        ? `subject ${gameChallenge?.challenge?.title} 已投放至比赛`
+                        : `subject ${gameChallenge?.challenge?.title} 已从比赛移除`,
                 });
             })
             .finally(() => {
@@ -80,7 +80,7 @@ export default function GameChallengeAccordion({
         })
             .then((_) => {
                 showSuccessNotification({
-                    message: "题目分值已更新",
+                    message: "subject分值已Renew",
                 });
             })
             .finally(() => {
@@ -95,7 +95,7 @@ export default function GameChallengeAccordion({
                 challenge_id: gameChallenge?.challenge_id,
             }).then(() => {
                 showSuccessNotification({
-                    message: "题目已删除",
+                    message: "subject已删除",
                 });
                 setRefresh();
             });
@@ -109,18 +109,18 @@ export default function GameChallengeAccordion({
                 <>
                     <Flex gap={10} align={"center"}>
                         <MDIcon>bookmark_remove</MDIcon>
-                        <Text fw={600}>删除题目</Text>
+                        <Text fw={600}>删除subject</Text>
                     </Flex>
                     <Divider my={10} />
                     <Text>
-                        你确定要删除题目 {gameChallenge?.challenge?.title} 吗？
+                        你Sure要删除subject {gameChallenge?.challenge?.title} 吗？
                     </Text>
                 </>
             ),
             withCloseButton: false,
             labels: {
-                confirm: "确定",
-                cancel: "取消",
+                confirm: "Sure",
+                cancel: "Cancel",
             },
             confirmProps: {
                 color: "red",
@@ -191,7 +191,7 @@ export default function GameChallengeAccordion({
                     </Flex>
                 </Accordion.Control>
                 <Flex gap={10}>
-                    <Tooltip label="编辑题目" withArrow>
+                    <Tooltip label="编辑subject" withArrow>
                         <ActionIcon
                             variant="transparent"
                             onClick={() =>
@@ -203,7 +203,7 @@ export default function GameChallengeAccordion({
                             <MDIcon>edit</MDIcon>
                         </ActionIcon>
                     </Tooltip>
-                    <Tooltip label="删除题目" withArrow>
+                    <Tooltip label="删除subject" withArrow>
                         <ActionIcon
                             variant="transparent"
                             onClick={() =>
@@ -283,7 +283,7 @@ export default function GameChallengeAccordion({
                             type="submit"
                             leftSection={<MDIcon c={"white"}>check</MDIcon>}
                         >
-                            保存
+                            save
                         </Button>
                     </Stack>
                 </form>

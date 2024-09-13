@@ -44,7 +44,7 @@ function Page() {
             flags: flags,
         }).then((_) => {
             showSuccessNotification({
-                message: "题目 Flag 更新成功",
+                message: "Flag Update Success",
             });
         });
     }
@@ -72,7 +72,7 @@ function Page() {
                                 Flags
                             </Text>
                         </Group>
-                        <Tooltip label="创建 Flag" withArrow>
+                        <Tooltip label="Create Flag" withArrow>
                             <ActionIcon
                                 onClick={() => {
                                     setFlags([
@@ -101,7 +101,7 @@ function Page() {
                                 </Badge>
                             </Center>
                             <TextInput
-                                label="Flag 值"
+                                label="Flag Value"
                                 value={flag.value}
                                 flex={1}
                                 onChange={(e) => {
@@ -119,18 +119,18 @@ function Page() {
                             />
                             <Select
                                 w={"15%"}
-                                label="Flag 类型"
+                                label="Flag Type"
                                 data={[
                                     {
-                                        label: "静态",
+                                        label: "Static",
                                         value: Type.Static.toString(),
                                     },
                                     {
-                                        label: "正则",
+                                        label: "Pattern",
                                         value: Type.Pattern.toString(),
                                     },
                                     {
-                                        label: "动态",
+                                        label: "Dynamic",
                                         value: Type.Dynamic.toString(),
                                     },
                                 ]}
@@ -151,7 +151,7 @@ function Page() {
                             />
                             <TextInput
                                 w={"15%"}
-                                label="环境变量"
+                                label="Environment Variable"
                                 value={flag.env}
                                 onChange={(e) => {
                                     setFlags(
@@ -167,8 +167,8 @@ function Page() {
                                 }}
                             />
                             <Checkbox
-                                label="封禁此 Flag"
-                                description="用户提交此 Flag 时将被判为作弊"
+                                label="Ban This Flag"
+                                description="Users submitting this Flag will be considered cheating"
                                 checked={flag.banned}
                                 onChange={(e) => {
                                     setFlags(
@@ -202,7 +202,7 @@ function Page() {
                         leftSection={<MDIcon c={"white"}>check</MDIcon>}
                         onClick={() => handleUpdateChallengeFlag()}
                     >
-                        保存
+                        Save
                     </Button>
                 </Flex>
             </Stack>

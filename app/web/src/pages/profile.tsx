@@ -80,7 +80,7 @@ export default function Page() {
         })
             .then((_) => {
                 showSuccessNotification({
-                    message: `个人资料更新成功`,
+                    message: `Profile updated successfully`,
                 });
             })
             .catch((e) => {
@@ -105,7 +105,7 @@ export default function Page() {
         saveUserAvatar(Number(user?.id), file!, config)
             .then((_) => {
                 showSuccessNotification({
-                    message: `user ${form.getValues().nickname} Avatar updated successfully`,
+                    message: `User ${form.getValues().nickname}'s avatar updated successfully`,
                 });
             })
             .finally(() => {
@@ -148,7 +148,7 @@ export default function Page() {
                 >
                     <Flex gap={10} align={"center"}>
                         <MDIcon>person</MDIcon>
-                        <Text fw={600}>个人资料</Text>
+                        <Text fw={600}>Profile</Text>
                     </Flex>
                     <Divider my={10} />
                     <Box p={10}>
@@ -160,7 +160,7 @@ export default function Page() {
                                     <Stack flex={1}>
                                         <Flex gap={10} w={"100%"}>
                                             <TextInput
-                                                label="用户名"
+                                                label="Username"
                                                 size="md"
                                                 w={"40%"}
                                                 disabled
@@ -173,7 +173,7 @@ export default function Page() {
                                                 )}
                                             />
                                             <TextInput
-                                                label="昵称"
+                                                label="Nickname"
                                                 size="md"
                                                 w={"60%"}
                                                 key={form.key("nickname")}
@@ -183,7 +183,7 @@ export default function Page() {
                                             />
                                         </Flex>
                                         <TextInput
-                                            label="邮箱"
+                                            label="Email"
                                             size="md"
                                             leftSection={<MDIcon>email</MDIcon>}
                                             key={form.key("email")}
@@ -245,7 +245,7 @@ export default function Page() {
                                     </Dropzone>
                                 </Flex>
                                 <TextInput
-                                    label="password"
+                                    label="Password"
                                     size="md"
                                     leftSection={<MDIcon>lock</MDIcon>}
                                     key={form.key("password")}
@@ -259,7 +259,7 @@ export default function Page() {
                                         <MDIcon c={"white"}>check</MDIcon>
                                     }
                                 >
-                                   renew
+                                   Update
                                 </Button>
                             </Flex>
                         </form>

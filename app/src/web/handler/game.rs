@@ -13,6 +13,7 @@ use sea_orm::QueryFilter;
 use sea_orm::{ActiveModelTrait, Set};
 
 use crate::database::get_db;
+use crate::model::game;
 use crate::model::user::group::Group;
 use crate::web::model::{game::*, Metadata};
 use crate::web::router::game::calculator;
@@ -273,11 +274,29 @@ pub async fn get_team(
 pub async fn create_team(
     Extension(ext): Extension<Ext>, Json(body): Json<CreateTeamRequest>,
 ) -> Result<impl IntoResponse, WebError> {
-    let operator = ext.operator.ok_or(WebError::Unauthorized(String::new()))?;
-    if operator.group != Group::Admin {
-        return Err(WebError::Forbidden(String::new()));
-    }
 
+    // let operator = ext.operator.ok_or(WebError::Unauthorized(String::new()))?;
+    // if operator.group != Group::Admin {
+    //     return Err(WebError::Forbidden(String::new()));
+    // }
+
+    let (games, total) = crate::model::game::find(
+        Some(body.game_id),
+        None,
+        None,
+        None,
+        None,
+    )
+    .await?;
+    
+    let game_is_public: bool = games.first().unwrap().is_public;
+    if !game_is_public {
+        return Err(WebError::Forbidden(String::new()));
+    };
+    
+    if total == 0 {
+        return Err(WebError::NotFound(String::from("Game not found")));
+    }
     let game_team = crate::model::game_team::ActiveModel {
         game_id: Set(body.game_id),
         team_id: Set(body.team_id),

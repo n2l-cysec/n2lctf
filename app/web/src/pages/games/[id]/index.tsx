@@ -80,7 +80,7 @@ export default function Page() {
             }
         }
         showErrNotification({
-            message: "你没有加入任何一个可参赛的队伍",
+            message: "You are not on any eligible team",
         });
     }
 
@@ -141,21 +141,21 @@ export default function Page() {
                                             )
                                         }
                                     >
-                                        查看榜单
+                                        View the list
                                     </Button>
                                     <Button
                                         onClick={() => applyOpen()}
                                         disabled={gameTeam !== undefined}
                                     >
                                         {!gameTeam
-                                            ? "报名参赛"
-                                            : `已报名：${gameTeam?.team?.name}`}
+                                            ? "Registration"
+                                            : `Already registered：${gameTeam?.team?.name}`}
                                     </Button>
                                     <Button
                                         onClick={() => enter()}
                                         disabled={!canEnter}
                                     >
-                                        进入比赛
+                                        Enter the game
                                     </Button>
                                 </Group>
                             </Stack>

@@ -88,7 +88,7 @@ function Page() {
     }, [gameChallenges]);
 
     useEffect(() => {
-        document.title = `题目管理 - ${game?.title}`;
+        document.title = `Subject Management - ${game?.title}`;
     }, [game]);
 
     return (
@@ -99,10 +99,10 @@ function Page() {
                         <Group>
                             <MDIcon>collections_bookmark</MDIcon>
                             <Text fw={700} size="xl">
-                                题目
+                                Subject
                             </Text>
                         </Group>
-                        <Tooltip label="添加题目" withArrow>
+                        <Tooltip label="Add Subject" withArrow>
                             <ActionIcon onClick={() => createOpen()}>
                                 <MDIcon>add</MDIcon>
                             </ActionIcon>

@@ -65,12 +65,12 @@ export default function UserSelectModal(props: UserSelectModalProps) {
                     >
                         <Flex gap={10} align={"center"}>
                             <MDIcon>person</MDIcon>
-                            <Text fw={600}>选择用户</Text>
+                            <Text fw={600}>Select User</Text>
                         </Flex>
                         <Divider my={10} />
                         <Stack p={10} gap={20} align="center">
                             <TextInput
-                                label="搜索"
+                                label="search"
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
                                 w={"100%"}

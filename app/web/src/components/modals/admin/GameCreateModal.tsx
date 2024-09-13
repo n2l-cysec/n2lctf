@@ -53,7 +53,7 @@ export default function GameCreateModal(props: GameCreateModalProps) {
             is_enabled: false,
         }).then((_) => {
             showSuccessNotification({
-                message: `比赛 ${form.getValues().title} 创建成功`,
+                message: `比赛 ${form.getValues().title} Create Success`,
             });
             setRefresh();
             modalProps.onClose();
@@ -83,7 +83,7 @@ export default function GameCreateModal(props: GameCreateModalProps) {
                     >
                         <Flex gap={10} align={"center"}>
                             <MDIcon>flag</MDIcon>
-                            <Text fw={600}>创建比赛</Text>
+                            <Text fw={600}>Create Competition</Text>
                         </Flex>
                         <Divider my={10} />
                         <Box p={10}>
@@ -94,14 +94,14 @@ export default function GameCreateModal(props: GameCreateModalProps) {
                             >
                                 <Stack gap={10}>
                                     <TextInput
-                                        label="比赛名称"
+                                        label="Competition Name"
                                         size="md"
                                         withAsterisk
                                         key={form.key("title")}
                                         {...form.getInputProps("title")}
                                     />
                                     <Textarea
-                                        label="比赛简介"
+                                        label="Competition Introduction"
                                         size="md"
                                         key={form.key("bio")}
                                         {...form.getInputProps("bio")}
@@ -109,8 +109,8 @@ export default function GameCreateModal(props: GameCreateModalProps) {
                                     <DateTimePicker
                                         withSeconds
                                         withAsterisk
-                                        label="开始时间"
-                                        placeholder="请选择比赛开始的时间"
+                                        label="Start time"
+                                        placeholder="Please select the time the game starts"
                                         valueFormat="YYYY/MM/DD HH:mm:ss"
                                         value={
                                             new Date(
@@ -128,8 +128,8 @@ export default function GameCreateModal(props: GameCreateModalProps) {
                                     <DateTimePicker
                                         withSeconds
                                         withAsterisk
-                                        label="结束时间"
-                                        placeholder="请选择比赛结束的时间"
+                                        label="End time"
+                                        placeholder="Please select the time when the game ends"
                                         valueFormat="YYYY/MM/DD HH:mm:ss"
                                         value={
                                             new Date(
@@ -151,7 +151,7 @@ export default function GameCreateModal(props: GameCreateModalProps) {
                                             <MDIcon c={"white"}>check</MDIcon>
                                         }
                                     >
-                                        创建
+                                        Create
                                     </Button>
                                 </Flex>
                             </form>

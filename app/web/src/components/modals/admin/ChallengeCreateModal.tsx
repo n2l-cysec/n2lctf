@@ -52,7 +52,7 @@ export default function ChallengeCreateModal(props: ChallengeCreateModalProps) {
             category_id: form.getValues().category_id,
         }).then((_) => {
             showSuccessNotification({
-                message: `题目 ${form.getValues().title} 创建成功`,
+                message: `subject ${form.getValues().title} Create Success`,
             });
             setRefresh();
             modalProps.onClose();
@@ -82,7 +82,7 @@ export default function ChallengeCreateModal(props: ChallengeCreateModalProps) {
                     >
                         <Flex gap={10} align={"center"}>
                             <MDIcon>collections_bookmark</MDIcon>
-                            <Text fw={600}>创建题目</Text>
+                            <Text fw={600}>Create a subject</Text>
                         </Flex>
                         <Divider my={10} />
                         <Box p={10}>
@@ -94,13 +94,13 @@ export default function ChallengeCreateModal(props: ChallengeCreateModalProps) {
                                 <Stack gap={10}>
                                     <SimpleGrid cols={2}>
                                         <TextInput
-                                            label="题目标题"
+                                            label="Title"
                                             withAsterisk
                                             key={form.key("title")}
                                             {...form.getInputProps("title")}
                                         />
                                         <Select
-                                            label="分类"
+                                            label="Category"
                                             withAsterisk
                                             data={categoryStore?.categories?.map(
                                                 (category) => {
@@ -127,7 +127,7 @@ export default function ChallengeCreateModal(props: ChallengeCreateModalProps) {
                                         />
                                     </SimpleGrid>
                                     <Textarea
-                                        label="题目详情"
+                                        label="Challenge Details"
                                         autosize
                                         minRows={5}
                                         maxRows={5}
@@ -143,7 +143,7 @@ export default function ChallengeCreateModal(props: ChallengeCreateModalProps) {
                                             <MDIcon c={"white"}>check</MDIcon>
                                         }
                                     >
-                                        创建
+                                        Create
                                     </Button>
                                 </Flex>
                             </form>

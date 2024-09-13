@@ -31,7 +31,7 @@ export default function TeamJoinModal(props: TeamJoinModalProps) {
         validate: {
             inviteToken: (value) => {
                 if (value.split(":").length != 2) {
-                    return "邀请码格式错误";
+                    return "Invitation code format Error";
                 }
                 return null;
             },
@@ -45,12 +45,12 @@ export default function TeamJoinModal(props: TeamJoinModalProps) {
         })
             .then((_) => {
                 showSuccessNotification({
-                    message: "加入团队成功",
+                    message: "Join the team successfully",
                 });
             })
             .catch((_) => {
                 showErrNotification({
-                    message: "邀请码无效或团队已被锁定",
+                    message: "The invitation code is invalid or the team has been locked",
                 });
             })
             .finally(() => {
@@ -78,7 +78,7 @@ export default function TeamJoinModal(props: TeamJoinModalProps) {
                     >
                         <Flex gap={10} align={"center"}>
                             <MDIcon>waving_hand</MDIcon>
-                            <Text fw={600}>加入团队</Text>
+                            <Text fw={600}>Join the team</Text>
                         </Flex>
                         <Divider my={10} />
                         <Box p={10}>
@@ -88,7 +88,7 @@ export default function TeamJoinModal(props: TeamJoinModalProps) {
                                 })}
                             >
                                 <TextInput
-                                    label="邀请码"
+                                    label="Invite Code"
                                     size="md"
                                     placeholder="n:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
                                     key={form.key("inviteToken")}
@@ -101,7 +101,7 @@ export default function TeamJoinModal(props: TeamJoinModalProps) {
                                             <MDIcon c={"white"}>check</MDIcon>
                                         }
                                     >
-                                        加入
+                                       join in
                                     </Button>
                                 </Flex>
                             </form>

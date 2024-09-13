@@ -86,7 +86,7 @@ function Page() {
             is_need_write_up: form.getValues().is_need_write_up,
         }).then((_) => {
             showSuccessNotification({
-                message: `比赛 ${form.getValues().title} 更新成功`,
+                message: `Game ${form.getValues().title} Update Success`,
             });
         });
     }
@@ -103,7 +103,7 @@ function Page() {
         saveGamePoster(Number(game?.id), file!, config)
             .then((_) => {
                 showSuccessNotification({
-                    message: `比赛 ${form.getValues().title} 头图更新成功`,
+                    message: `Game ${form.getValues().title} Poster Update Success`,
                 });
             })
             .finally(() => {
@@ -144,7 +144,7 @@ function Page() {
                     <Group>
                         <MDIcon>info</MDIcon>
                         <Text fw={700} size="xl">
-                            基本信息
+                            Basic Information
                         </Text>
                     </Group>
                     <Divider />
@@ -153,15 +153,15 @@ function Page() {
                     <Stack mx={20}>
                         <TextInput
                             my={"auto"}
-                            label="标题"
-                            description="展示在最醒目位置的比赛大标题"
+                            label="Title"
+                            description="The prominent title of the game displayed"
                             withAsterisk
                             key={form.key("title")}
                             {...form.getInputProps("title")}
                         />
                         <Textarea
-                            label="简介"
-                            description="展示在比赛页面的简短介绍"
+                            label="Bio"
+                            description="A brief introduction displayed on the game page"
                             key={form.key("bio")}
                             {...form.getInputProps("bio")}
                         />
@@ -169,24 +169,24 @@ function Page() {
                             <SimpleGrid cols={4}>
                                 <NumberInput
                                     my={"auto"}
-                                    label="最小人数"
-                                    description="一个团队所需的最少的人数"
+                                    label="Minimum Members"
+                                    description="The minimum number of members required for a team"
                                     withAsterisk
                                     key={form.key("member_limit_min")}
                                     {...form.getInputProps("member_limit_min")}
                                 />
                                 <NumberInput
                                     my={"auto"}
-                                    label="最大人数"
-                                    description="一个团队所需的最多的人数"
+                                    label="Maximum Members"
+                                    description="The maximum number of members allowed in a team"
                                     withAsterisk
                                     key={form.key("member_limit_max")}
                                     {...form.getInputProps("member_limit_max")}
                                 />
                                 <NumberInput
                                     my={"auto"}
-                                    label="容器限制"
-                                    description="一个团队最多可启用的容器数量"
+                                    label="Container Limit"
+                                    description="The maximum number of containers a team can activate"
                                     withAsterisk
                                     key={form.key("parallel_container_limit")}
                                     {...form.getInputProps(
@@ -197,9 +197,9 @@ function Page() {
                                     my={"auto"}
                                     withSeconds
                                     withAsterisk
-                                    label="开始时间"
-                                    description="此时允许进入比赛，并且允许作答"
-                                    placeholder="请选择比赛开始的时间"
+                                    label="Start Time"
+                                    description="The time when the game starts and answering is allowed"
+                                    placeholder="Select the start time of the game"
                                     valueFormat="YYYY/MM/DD HH:mm:ss"
                                     value={
                                         new Date(
@@ -217,9 +217,9 @@ function Page() {
                                     my={"auto"}
                                     withSeconds
                                     withAsterisk
-                                    label="冻结时间"
-                                    description="此时允许进入比赛，仅可提交 WP"
-                                    placeholder="请选择比赛冻结的时间"
+                                    label="Freeze Time"
+                                    description="The time when entry is allowed, but only WP submission is allowed"
+                                    placeholder="Select the freeze time of the game"
                                     valueFormat="YYYY/MM/DD HH:mm:ss"
                                     value={
                                         new Date(
@@ -237,9 +237,9 @@ function Page() {
                                     my={"auto"}
                                     withSeconds
                                     withAsterisk
-                                    label="结束时间"
-                                    description="此时不允许进入比赛，封存比赛"
-                                    placeholder="请选择比赛结束的时间"
+                                    label="End Time"
+                                    description="The time when entry is no longer allowed, game is archived"
+                                    placeholder="Select the end time of the game"
                                     valueFormat="YYYY/MM/DD HH:mm:ss"
                                     value={
                                         new Date(
@@ -255,8 +255,8 @@ function Page() {
                                 />
                                 <Checkbox
                                     my={"auto"}
-                                    label="是否公开"
-                                    description="若为是，则队伍在报名参赛后自动审批"
+                                    label="Public"
+                                    description="If yes, the team will be automatically approved after registration"
                                     labelPosition="left"
                                     checked={form.getValues().is_public}
                                     onChange={(value) => {
@@ -268,8 +268,8 @@ function Page() {
                                 />
                                 <Checkbox
                                     my={"auto"}
-                                    label="是否需要 WP"
-                                    description="若为是，则比赛页面中将显示提交 WP 入口"
+                                    label="Requires WP"
+                                    description="If yes, the game page will display a WP submission entry"
                                     labelPosition="left"
                                     checked={form.getValues().is_need_write_up}
                                     onChange={(value) => {
@@ -287,7 +287,7 @@ function Page() {
                             }
                             onReject={() => {
                                 showErrNotification({
-                                    message: "文件上传失败",
+                                    message: "File upload failed",
                                 });
                             }}
                             mih={"10rem"}
@@ -318,7 +318,7 @@ function Page() {
                                     <Center h={"20vh"}>
                                         <Stack gap={0}>
                                             <Text size="xl" inline>
-                                                拖拽或点击上传头图
+                                                Drag or click to upload poster
                                             </Text>
                                             <Text
                                                 size="sm"
@@ -326,7 +326,7 @@ function Page() {
                                                 inline
                                                 mt={7}
                                             >
-                                                图片大小不超过 3MB
+                                                Image size should not exceed 3MB
                                             </Text>
                                         </Stack>
                                     </Center>
@@ -335,8 +335,8 @@ function Page() {
                         </Dropzone>
                         <Textarea
                             flex={1}
-                            label="详情"
-                            description="展示在比赛详情页的介绍"
+                            label="Details"
+                            description="Introduction displayed on the game detail page"
                             minRows={12}
                             maxRows={12}
                             resize={"vertical"}
@@ -350,7 +350,7 @@ function Page() {
                                 size="md"
                                 leftSection={<MDIcon c={"white"}>check</MDIcon>}
                             >
-                                保存
+                                Save
                             </Button>
                         </Flex>
                     </Stack>

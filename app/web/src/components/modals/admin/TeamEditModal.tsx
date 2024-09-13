@@ -62,17 +62,17 @@ export default function TeamEditModal(props: TeamEditModalProps) {
         validate: {
             name: (value) => {
                 if (value === "") {
-                    return "团队名称不能为空";
+                    return "Team name cannot be empty";
                 }
                 return null;
             },
             description: (value) => {
                 if (value === "") {
-                    return "团队简介不能为空";
+                    return "Team profile cannot be empty";
                 }
                 return null;
             },
-            email: isEmail("邮箱格式不正确"),
+            email: isEmail("The email format is incorrect"),
         },
     });
 
@@ -97,7 +97,7 @@ export default function TeamEditModal(props: TeamEditModalProps) {
         saveTeamAvatar(Number(team?.id), file!, config)
             .then((_) => {
                 showSuccessNotification({
-                    message: `团队 ${form.getValues().name} 头像更新成功`,
+                    message: `团队 ${form.getValues().name} 头像Update Success`,
                 });
             })
             .finally(() => {
@@ -122,7 +122,7 @@ export default function TeamEditModal(props: TeamEditModalProps) {
             const r = res.data;
             setInviteToken(r.token);
             showSuccessNotification({
-                message: `团队 ${team?.name} 邀请码更新成功`,
+                message: `Team ${team?.name} Invitation Code Update Success`,
             });
         });
     }
@@ -136,13 +136,13 @@ export default function TeamEditModal(props: TeamEditModalProps) {
         })
             .then((_) => {
                 showSuccessNotification({
-                    message: `团队 ${form.values.name} 更新成功`,
+                    message: `Team ${form.values.name} Update Success`,
                 });
                 setRefresh();
             })
             .catch((e) => {
                 showErrNotification({
-                    message: e.response.data.error || "更新团队失败",
+                    message: e.response.data.error || "Update team failed",
                 });
             })
             .finally(() => {
@@ -158,13 +158,13 @@ export default function TeamEditModal(props: TeamEditModalProps) {
         })
             .then((_) => {
                 showSuccessNotification({
-                    message: `团队 ${form.values.name} 转让成功`,
+                    message: `Team ${form.values.name} Transfer Success`,
                 });
                 setRefresh();
             })
             .catch((e) => {
                 showErrNotification({
-                    message: e.response.data.error || "转让团队失败",
+                    message: e.response.data.error || "Failed to transfer team",
                 });
             })
             .finally(() => {
@@ -179,7 +179,7 @@ export default function TeamEditModal(props: TeamEditModalProps) {
             user_id: Number(user?.id),
         }).then((_) => {
             showSuccessNotification({
-                message: `用户 ${user?.nickname} 已被踢出`,
+                message: `User ${user?.nickname} Kicked out`,
             });
             setRefresh();
             handleGetTeam();
@@ -193,16 +193,16 @@ export default function TeamEditModal(props: TeamEditModalProps) {
                 <>
                     <Flex gap={10} align={"center"}>
                         <MDIcon>person_remove</MDIcon>
-                        <Text fw={600}>踢出成员</Text>
+                        <Text fw={600}>Kick out members</Text>
                     </Flex>
                     <Divider my={10} />
-                    <Text>你确定要踢出成员 {user?.nickname} 吗？</Text>
+                    <Text>Are you sure you want to kick the member {user?.nickname} out?</Text>
                 </>
             ),
             withCloseButton: false,
             labels: {
-                confirm: "确定",
-                cancel: "取消",
+                confirm: "Sure",
+                cancel: "Cancel",
             },
             confirmProps: {
                 color: "red",
@@ -219,16 +219,16 @@ export default function TeamEditModal(props: TeamEditModalProps) {
                 <>
                     <Flex gap={10} align={"center"}>
                         <MDIcon color={"orange"}>star</MDIcon>
-                        <Text fw={600}>转让队长</Text>
+                        <Text fw={600}>Transfer Captain</Text>
                     </Flex>
                     <Divider my={10} />
-                    <Text>你确定要将队长转让给 {user?.nickname} 吗？</Text>
+                    <Text>Are you sure you want to transfer captaincy to {user?.nickname}?</Text>
                 </>
             ),
             withCloseButton: false,
             labels: {
-                confirm: "确定",
-                cancel: "取消",
+                confirm: "Sure",
+                cancel: "Cancel",
             },
             onConfirm: () => {
                 handleTransferCaptain(user);
@@ -278,7 +278,7 @@ export default function TeamEditModal(props: TeamEditModalProps) {
                     >
                         <Flex gap={10} align={"center"}>
                             <MDIcon>group_add</MDIcon>
-                            <Text fw={600}>团队详情</Text>
+                            <Text fw={600}>Team Details</Text>
                         </Flex>
                         <Divider my={10} />
                         <Box p={10}>
@@ -291,7 +291,7 @@ export default function TeamEditModal(props: TeamEditModalProps) {
                                     <Flex gap={10}>
                                         <Stack gap={10} flex={1}>
                                             <TextInput
-                                                label="团队名称"
+                                                label="Team Name"
                                                 size="md"
                                                 leftSection={
                                                     <MDIcon>people</MDIcon>
@@ -300,7 +300,7 @@ export default function TeamEditModal(props: TeamEditModalProps) {
                                                 {...form.getInputProps("name")}
                                             />
                                             <TextInput
-                                                label="邀请码"
+                                                label="Invite Code"
                                                 size="md"
                                                 readOnly
                                                 rightSection={
@@ -321,7 +321,7 @@ export default function TeamEditModal(props: TeamEditModalProps) {
                                             }
                                             onReject={() => {
                                                 showErrNotification({
-                                                    message: "文件上传失败",
+                                                    message: "File upload failed",
                                                 });
                                             }}
                                             h={150}
@@ -356,7 +356,7 @@ export default function TeamEditModal(props: TeamEditModalProps) {
                                                                 size="xl"
                                                                 inline
                                                             >
-                                                                拖拽或点击上传头像
+                                                                Drag or click to upload an avatar
                                                             </Text>
                                                             <Text
                                                                 size="sm"
@@ -364,7 +364,7 @@ export default function TeamEditModal(props: TeamEditModalProps) {
                                                                 inline
                                                                 mt={7}
                                                             >
-                                                                图片大小不超过
+                                                                The image size should not exceed
                                                                 3MB
                                                             </Text>
                                                         </Stack>
@@ -374,13 +374,13 @@ export default function TeamEditModal(props: TeamEditModalProps) {
                                         </Dropzone>
                                     </Flex>
                                     <Textarea
-                                        label="团队简介"
+                                        label="About the Team"
                                         size="md"
                                         key={form.key("description")}
                                         {...form.getInputProps("description")}
                                     />
                                     <TextInput
-                                        label="邮箱"
+                                        label="Email"
                                         size="md"
                                         leftSection={<MDIcon>email</MDIcon>}
                                         key={form.key("email")}
@@ -388,7 +388,7 @@ export default function TeamEditModal(props: TeamEditModalProps) {
                                     />
                                 </Stack>
                                 <Stack mt={10}>
-                                    <Text>成员</Text>
+                                    <Text>Member</Text>
                                     <Group gap={20}>
                                         {team?.users?.map((user) => (
                                             <Flex
@@ -411,7 +411,7 @@ export default function TeamEditModal(props: TeamEditModalProps) {
                                                 {user?.id ===
                                                     team?.captain_id && (
                                                     <Tooltip
-                                                        label="队长"
+                                                        label="Team Leader"
                                                         withArrow
                                                     >
                                                         <MDIcon
@@ -425,7 +425,7 @@ export default function TeamEditModal(props: TeamEditModalProps) {
                                                     team?.captain_id && (
                                                     <Flex>
                                                         <Tooltip
-                                                            label="转让队长"
+                                                            label="Transfer Captain"
                                                             withArrow
                                                         >
                                                             <ActionIcon
@@ -442,7 +442,7 @@ export default function TeamEditModal(props: TeamEditModalProps) {
                                                             </ActionIcon>
                                                         </Tooltip>
                                                         <Tooltip
-                                                            label="踢出"
+                                                            label="Kick Out"
                                                             withArrow
                                                         >
                                                             <ActionIcon
@@ -471,7 +471,7 @@ export default function TeamEditModal(props: TeamEditModalProps) {
                                             <MDIcon c={"white"}>check</MDIcon>
                                         }
                                     >
-                                        更新
+                                        Renew
                                     </Button>
                                 </Flex>
                             </form>

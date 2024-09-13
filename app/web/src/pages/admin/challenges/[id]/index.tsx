@@ -68,13 +68,13 @@ function Page() {
     function handleSaveAttachment() {
         showLoadingNotification({
             id: "upload-attachment",
-            message: "正在上传附件",
+            message: "Uploading attachment",
         });
         const config: AxiosRequestConfig<FormData> = {};
         saveChallengeAttachment(Number(id), attachment!, config).then((_) => {
             showSuccessNotification({
                 id: "upload-attachment",
-                message: "附件上传成功",
+                message: "Attachment upload successful",
                 update: true,
             });
             setRefresh((prev) => prev + 1);
@@ -84,7 +84,7 @@ function Page() {
     function handleDeleteAttachment() {
         deleteChallengeAttachment(Number(id)).then((_) => {
             showSuccessNotification({
-                message: "附件删除成功",
+                message: "Attachment deletion successful",
             });
             setRefresh((prev) => prev + 1);
         });
@@ -106,7 +106,7 @@ function Page() {
         validate: zodResolver(
             z.object({
                 title: z.string({
-                    required_error: "标题不能为空",
+                    required_error: "Title is required",
                 }),
             })
         ),
@@ -120,7 +120,7 @@ function Page() {
             category_id: form.getValues().category_id,
         }).then((_) => {
             showSuccessNotification({
-                message: `题目 ${form.getValues().title} 更新成功`,
+                message: `Challenge ${form.getValues().title} Update Success`,
             });
             setRefresh((prev) => prev + 1);
         });
@@ -153,7 +153,7 @@ function Page() {
                     <Group>
                         <MDIcon>info</MDIcon>
                         <Text fw={700} size="xl">
-                            基本信息
+                            Basic Information
                         </Text>
                     </Group>
                     <Divider />
@@ -162,18 +162,18 @@ function Page() {
                     <Stack mx={20}>
                         <Group>
                             <TextInput
-                                label="标题"
+                                label="Title"
                                 withAsterisk
-                                description="题目大标题"
+                                description="Main title of the challenge"
                                 flex={1}
                                 key={form.key("title")}
                                 {...form.getInputProps("title")}
                             />
                             <Select
-                                label="分类"
+                                label="Category"
                                 withAsterisk
                                 w={"20%"}
-                                description="题目分类"
+                                description="Challenge category"
                                 data={categoryStore?.categories?.map(
                                     (category) => {
                                         return {
@@ -193,8 +193,8 @@ function Page() {
                             />
                         </Group>
                         <Textarea
-                            label="描述"
-                            description="题目的描述，支持 Markdown"
+                            label="Description"
+                            description="Description of the challenge, supports Markdown"
                             autosize
                             minRows={9}
                             maxRows={9}
@@ -204,7 +204,7 @@ function Page() {
                         />
                         <Group align={"end"} gap={10}>
                             <TextInput
-                                label="附件名/大小"
+                                label="Attachment Name/Size"
                                 disabled
                                 flex={1}
                                 value={
@@ -214,13 +214,13 @@ function Page() {
                                 }
                             />
                             <FileInput
-                                label="上传附件"
-                                description="上传题目附件"
-                                placeholder="点击此处上传附件"
+                                label="Upload Attachment"
+                                description="Upload a challenge attachment"
+                                placeholder="Click here to upload attachment"
                                 value={attachment}
                                 onChange={setAttachment}
                             />
-                            <Tooltip label="清除附件" withArrow>
+                            <Tooltip label="Clear Attachment" withArrow>
                                 <ActionIcon
                                     my={7}
                                     onClick={() => handleDeleteAttachment()}
@@ -236,7 +236,7 @@ function Page() {
                                 size="md"
                                 leftSection={<MDIcon c={"white"}>check</MDIcon>}
                             >
-                                保存
+                                Save
                             </Button>
                         </Flex>
                     </Stack>

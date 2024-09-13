@@ -49,7 +49,7 @@ export default function GameTeamApplyModal(props: GameTeamApplyModalProps) {
             const r = res.data;
             const t = r.data as Array<Team>;
             t?.map((team) => {
-                // 判断是否是队长且未加入比赛
+                // Check if the user is the team captain and hasn't joined the game yet
                 if (
                     team?.captain_id === authStore?.user?.id &&
                     !gameTeams?.find((gameTeam) => gameTeam.team_id === team.id)
@@ -67,12 +67,12 @@ export default function GameTeamApplyModal(props: GameTeamApplyModalProps) {
         })
             .then((_) => {
                 showSuccessNotification({
-                    message: "已递交申请",
+                    message: "Application submitted",
                 });
             })
             .catch((e) => {
                 showErrNotification({
-                    message: e.response.data.msg || "申请失败",
+                    message: e.response.data.msg || "Application failed",
                 });
             })
             .finally(() => {
@@ -112,7 +112,7 @@ export default function GameTeamApplyModal(props: GameTeamApplyModalProps) {
                     >
                         <Flex gap={10} align={"center"}>
                             <MDIcon>people</MDIcon>
-                            <Text fw={600}>选择团队</Text>
+                            <Text fw={600}>Select Team</Text>
                         </Flex>
                         <Divider my={10} />
                         <Stack p={10} gap={20} align="center">

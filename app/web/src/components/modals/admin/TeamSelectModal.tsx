@@ -65,12 +65,12 @@ export default function TeamSelectModal(props: TeamSelectModalProps) {
                     >
                         <Flex gap={10} align={"center"}>
                             <MDIcon>people</MDIcon>
-                            <Text fw={600}>选择团队</Text>
+                            <Text fw={600}>Select Team</Text>
                         </Flex>
                         <Divider my={10} />
                         <Stack p={10} gap={20} align="center">
                             <TextInput
-                                label="搜索"
+                                label="search"
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
                                 w={"100%"}

@@ -166,8 +166,8 @@ function Page() {
                 }
             }
             showErrNotification({
-                title: "获取队伍信息失败",
-                message: "请检查是否已加入可参赛的队伍",
+                title: "Failed to obtain team information",
+                message: "Please check if you have joined an eligible team",
             });
             navigate(`/games/${id}`);
         }
@@ -248,7 +248,7 @@ function Page() {
                             }
                             disabled={!game?.is_need_write_up}
                         >
-                            上传题解
+                            Upload solution
                         </Button>
                         <Divider />
                         <Stack gap={10}>
@@ -377,21 +377,21 @@ function Page() {
                                 <Flex justify={"space-between"} mx={36}>
                                     <Stack align={"center"} gap={10}>
                                         <Text fw={700} size="1.2rem">
-                                            {rank > 0 ? rank : "无排名"}
+                                            {rank > 0 ? rank : "No ranking"}
                                         </Text>
-                                        <Badge>排名</Badge>
+                                        <Badge>Ranking</Badge>
                                     </Stack>
                                     <Stack align={"center"} gap={10}>
                                         <Text fw={700} size="1.2rem">
                                             {score || 0}
                                         </Text>
-                                        <Badge>得分</Badge>
+                                        <Badge>Score</Badge>
                                     </Stack>
                                     <Stack align={"center"} gap={10}>
                                         <Text fw={700} size="1.2rem">
                                             {solves || 0}
                                         </Text>
-                                        <Badge>已解决</Badge>
+                                        <Badge>Resolved</Badge>
                                     </Stack>
                                 </Flex>
                             </Stack>

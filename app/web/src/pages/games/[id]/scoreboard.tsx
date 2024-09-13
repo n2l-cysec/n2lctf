@@ -151,7 +151,7 @@ function Page() {
                 let total = 0;
                 for (const score of teamScores[team_id]) {
                     total += score[1]; // 累加得分
-                    score[1] = total; // 更新为累计得分
+                    score[1] = total; // Renew为累计得分
                 }
             }
 
@@ -205,14 +205,14 @@ function Page() {
                         },
                     },
                     xAxis: {
-                        name: "时间",
+                        name: "time",
                         type: "time",
                         splitLine: {
                             show: true,
                         },
                     },
                     yAxis: {
-                        name: "分数",
+                        name: "Fraction",
                         type: "value",
                     },
                     series: series,
@@ -344,10 +344,10 @@ function Page() {
                         )}
                     </Table.Tr>
                     <Table.Tr>
-                        <Table.Th>排名</Table.Th>
-                        <Table.Th>队伍</Table.Th>
-                        <Table.Th>总分</Table.Th>
-                        <Table.Th>攻克</Table.Th>
+                        <Table.Th>Ranking</Table.Th>
+                        <Table.Th>Team</Table.Th>
+                        <Table.Th>Total score</Table.Th>
+                        <Table.Th>capture</Table.Th>
                         {Object.values(categoriedChallenges)?.map(
                             (categoriedChallenge) =>
                                 categoriedChallenge.challenges?.map(

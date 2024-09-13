@@ -18,7 +18,7 @@ export function showErrNotification({
 }) {
     const notificationData: NotificationData = {
         id: id,
-        title: title || "错误",
+        title: title || "Error",
         message: message,
         color: "red",
         icon: <MDIcon c={"white"}>exclamation</MDIcon>,
@@ -78,7 +78,7 @@ export function showInfoNotification({
 }) {
     const notificationData: NotificationData = {
         id: id,
-        title: title || "信息",
+        title: title || "information",
         message: message,
         color: "blue",
         icon: <MDIcon c={"white"}>info_i</MDIcon>,

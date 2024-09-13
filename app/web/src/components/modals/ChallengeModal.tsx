@@ -106,7 +106,7 @@ export default function ChallengeModal(props: ChallengeModalProps) {
             })
             .catch((e) => {
                 showErrNotification({
-                    title: "错误",
+                    title: "Error",
                     message: e.response.data.msg,
                 });
             })
@@ -124,8 +124,8 @@ export default function ChallengeModal(props: ChallengeModalProps) {
                 setPod(undefined);
                 setPodTime(0);
                 showSuccessNotification({
-                    title: "操作成功",
-                    message: "实例已销毁！",
+                    title: "Operation successful",
+                    message: "The instance has been destroyed!",
                 });
             })
             .finally(() => {
@@ -149,8 +149,8 @@ export default function ChallengeModal(props: ChallengeModalProps) {
     async function submitFlag(flag?: string) {
         if (!flag?.trim()) {
             showErrNotification({
-                title: "错误",
-                message: "Flag 不能为空！",
+                title: "Error",
+                message: "Flag cannot be empty!",
             });
             return;
         }
@@ -168,13 +168,13 @@ export default function ChallengeModal(props: ChallengeModalProps) {
                 submissionID = Number(r?.data?.id);
                 showLoadingNotification({
                     id: "flag_check",
-                    title: "请稍候",
-                    message: "正在检查 Flag...",
+                    title: "Please wait",
+                    message: "Checking Flag...",
                 });
             })
             .catch((e) => {
                 showErrNotification({
-                    title: "错误",
+                    title: "Error",
                     message: e.response.data.msg,
                 });
             });
@@ -188,29 +188,29 @@ export default function ChallengeModal(props: ChallengeModalProps) {
                 if (r?.data?.status === Status.Correct) {
                     showSuccessNotification({
                         id: "flag_check",
-                        title: "恭喜",
-                        message: "Flag 正确",
+                        title: "Congratulations",
+                        message: "Flag Correct",
                         update: true,
                     });
                 } else if (r?.data?.status === Status.Incorrect) {
                     showErrNotification({
                         id: "flag_check",
-                        title: "错误",
-                        message: "Flag 错误",
+                        title: "Error",
+                        message: "Flag Error",
                         update: true,
                     });
                 } else if (r?.data?.status === Status.Cheat) {
                     showWarnNotification({
                         id: "flag_check",
-                        title: "作弊",
-                        message: "Flag 被判定为作弊",
+                        title: "Cheating",
+                        message: "Flag is considered cheating",
                         update: true,
                     });
                 } else if (r?.data?.status === Status.Invalid) {
                     showInfoNotification({
                         id: "flag_check",
-                        title: "无效",
-                        message: "Flag 无效",
+                        title: "Invalid",
+                        message: "Flag Invalid",
                         update: true,
                     });
                 }
@@ -284,7 +284,7 @@ export default function ChallengeModal(props: ChallengeModalProps) {
                             <Group gap={0}>
                                 {(status?.bloods?.length as number) > 0 && (
                                     <Tooltip
-                                        label={`一血 ${status?.bloods?.[0]?.team?.name || status?.bloods?.[0]?.user?.nickname}`}
+                                        label={`First Blood ${status?.bloods?.[0]?.team?.name || status?.bloods?.[0]?.user?.nickname}`}
                                         position={"top"}
                                     >
                                         <ThemeIcon variant="transparent">
@@ -294,7 +294,7 @@ export default function ChallengeModal(props: ChallengeModalProps) {
                                 )}
                                 {(status?.bloods?.length as number) > 1 && (
                                     <Tooltip
-                                        label={`二血 ${status?.bloods?.[1]?.team?.name || status?.bloods?.[1]?.user?.nickname}`}
+                                        label={`Second Blood ${status?.bloods?.[1]?.team?.name || status?.bloods?.[1]?.user?.nickname}`}
                                         position={"top"}
                                     >
                                         <Box
@@ -311,7 +311,7 @@ export default function ChallengeModal(props: ChallengeModalProps) {
                                 )}
                                 {(status?.bloods?.length as number) > 2 && (
                                     <Tooltip
-                                        label={`三血 ${status?.bloods?.[2]?.team?.name || status?.bloods?.[2]?.user?.nickname}`}
+                                        label={`Third Blood ${status?.bloods?.[2]?.team?.name || status?.bloods?.[2]?.user?.nickname}`}
                                         position={"top"}
                                     >
                                         <Box
@@ -335,7 +335,7 @@ export default function ChallengeModal(props: ChallengeModalProps) {
                             />
                             {attachmentMetadata?.filename && (
                                 <Tooltip
-                                    label={`下载附件 ${attachmentMetadata?.filename}`}
+                                    label={`Download attachment ${attachmentMetadata?.filename}`}
                                     withArrow
                                     position={"top"}
                                 >
@@ -434,7 +434,7 @@ export default function ChallengeModal(props: ChallengeModalProps) {
                                                         <Tooltip
                                                             withArrow
                                                             label={
-                                                                "在浏览器中打开"
+                                                                "Open in browser"
                                                             }
                                                         >
                                                             <ActionIcon
@@ -463,10 +463,10 @@ export default function ChallengeModal(props: ChallengeModalProps) {
                                 >
                                     <Stack gap={5}>
                                         <Text fw={700} size="0.8rem">
-                                            本题为动态容器题目，解题需开启容器实例
+                                        This question is about dynamic container subject. To solve the question, you need to open the container instance.
                                         </Text>
                                         <Text size="0.8rem" c="secondary">
-                                            本题容器时间{" "}
+                                        This question container time {" "}
                                             {podTime || challenge?.duration}s
                                         </Text>
                                     </Stack>
@@ -478,14 +478,14 @@ export default function ChallengeModal(props: ChallengeModalProps) {
                                                     color={"blue"}
                                                     onClick={handleRenewPod}
                                                 >
-                                                    实例续期
+                                                    Instance renewal
                                                 </Button>
                                                 <Button
                                                     loading={podRemoveLoading}
                                                     color={"red"}
                                                     onClick={handleRemovePod}
                                                 >
-                                                    销毁实例
+                                                    Destroy an instance
                                                 </Button>
                                             </>
                                         )}
@@ -496,7 +496,7 @@ export default function ChallengeModal(props: ChallengeModalProps) {
                                                 loading={podCreateLoading}
                                                 onClick={handleCreatePod}
                                             >
-                                                开启容器
+                                                Open the container
                                             </Button>
                                         )}
                                     </Flex>
@@ -534,7 +534,7 @@ export default function ChallengeModal(props: ChallengeModalProps) {
                                     w={"15%"}
                                     type="submit"
                                 >
-                                    提交
+                                    Submit
                                 </Button>
                             </Flex>
                         </form>

@@ -85,8 +85,8 @@ export default function Page() {
             .then((_) => {
                 showSuccessNotification({
                     message: !challenge?.is_practicable
-                        ? `题目 ${challenge?.title} 已投放进练习场`
-                        : `题目 ${challenge?.title} 已从练习场移除`,
+                        ? `Challenge ${challenge?.title} has been added to practice`
+                        : `Challenge ${challenge?.title} has been removed from practice`,
                 });
             })
             .finally(() => {
@@ -100,7 +100,7 @@ export default function Page() {
         })
             .then((_) => {
                 showSuccessNotification({
-                    message: `题目 ${challenge?.title} 已被删除`,
+                    message: `Challenge ${challenge?.title} has been deleted`,
                 });
             })
             .catch((e) => {
@@ -120,16 +120,16 @@ export default function Page() {
                 <>
                     <Flex gap={10} align={"center"}>
                         <MDIcon>bookmark_remove</MDIcon>
-                        <Text fw={600}>删除题目</Text>
+                        <Text fw={600}>Delete Challenge</Text>
                     </Flex>
                     <Divider my={10} />
-                    <Text>你确定要删除题目 {challenge?.title} 吗？</Text>
+                    <Text>Are you sure you want to delete the challenge {challenge?.title}?</Text>
                 </>
             ),
             withCloseButton: false,
             labels: {
-                confirm: "确定",
-                cancel: "取消",
+                confirm: "Confirm",
+                cancel: "Cancel",
             },
             confirmProps: {
                 color: "red",
@@ -144,7 +144,7 @@ export default function Page() {
     }, [search, page, rowsPerPage, sort, refresh]);
 
     useEffect(() => {
-        document.title = `题库管理 - ${configStore?.pltCfg?.site?.title}`;
+        document.title = `Challenge Management - ${configStore?.pltCfg?.site?.title}`;
     }, []);
 
     return (
@@ -154,7 +154,7 @@ export default function Page() {
                     <Flex justify={"space-between"} align={"center"}>
                         <TextInput
                             variant="filled"
-                            placeholder="搜索"
+                            placeholder="Search"
                             mr={5}
                             value={searchInput}
                             onChange={(e) => setSearchInput(e.target.value)}
@@ -170,8 +170,8 @@ export default function Page() {
                         </ActionIcon>
                     </Flex>
                     <Select
-                        label="每页显示"
-                        description="选择每页显示的题目数量"
+                        label="Rows per page"
+                        description="Select the number of challenges per page"
                         value={String(rowsPerPage)}
                         allowDeselect={false}
                         data={["15", "25", "50", "100"]}
@@ -181,25 +181,25 @@ export default function Page() {
                         mt={15}
                     />
                     <Select
-                        label="排序"
-                        description="选择题目排序方式"
+                        label="Sort"
+                        description="Select the sorting order"
                         value={sort}
                         allowDeselect={false}
                         data={[
                             {
-                                label: "ID 升序",
+                                label: "ID Ascending",
                                 value: "id_asc",
                             },
                             {
-                                label: "ID 降序",
+                                label: "ID Descending",
                                 value: "id_desc",
                             },
                             {
-                                label: "标题升序",
+                                label: "Title Ascending",
                                 value: "title_asc",
                             },
                             {
-                                label: "标题降序",
+                                label: "Title Descending",
                                 value: "title_desc",
                             },
                         ]}
@@ -224,18 +224,18 @@ export default function Page() {
                                 >
                                     <Table.Th>
                                         <Flex justify={"start"}>
-                                            <Tooltip label="投放到题库">
+                                            <Tooltip label="Add to Challenge Pool">
                                                 <MDIcon>
                                                     collections_bookmark
                                                 </MDIcon>
                                             </Tooltip>
                                         </Flex>
                                     </Table.Th>
-                                    <Table.Th>标题</Table.Th>
-                                    <Table.Th>描述</Table.Th>
+                                    <Table.Th>Title</Table.Th>
+                                    <Table.Th>Description</Table.Th>
                                     <Table.Th>
                                         <Flex align={"center"}>
-                                            分类
+                                            Category
                                             <ActionIcon
                                                 onClick={() =>
                                                     navigate(

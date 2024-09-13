@@ -56,13 +56,13 @@ export default function UserEditModal(props: UserEditModalProps) {
         },
         validate: zodResolver(
             z.object({
-                nickname: z.string().min(1, { message: "昵称不能为空" }),
-                email: z.string().email({ message: "邮箱格式不正确" }),
+                nickname: z.string().min(1, { message: "Nickname cannot be empty" }),
+                email: z.string().email({ message: "The email format is incorrect" }),
                 password: z
                     .string()
                     .optional()
                     .refine((val) => val === "" || Number(val?.length) >= 6, {
-                        message: "密码长度至少为 6 位",
+                        message: "Password must be at least 6 characters long",
                     }),
             })
         ),
@@ -89,13 +89,13 @@ export default function UserEditModal(props: UserEditModalProps) {
         })
             .then((_) => {
                 showSuccessNotification({
-                    message: `用户 ${form.getValues().nickname} 更新成功`,
+                    message: `用户 ${form.getValues().nickname} Update Success`,
                 });
                 setRefresh();
             })
             .catch((e) => {
                 showErrNotification({
-                    message: e.response.data.error || "更新用户失败",
+                    message: e.response.data.error || "Update user failed",
                 });
             })
             .finally(() => {
@@ -116,7 +116,7 @@ export default function UserEditModal(props: UserEditModalProps) {
         saveUserAvatar(Number(user?.id), file!, config)
             .then((_) => {
                 showSuccessNotification({
-                    message: `用户 ${form.getValues().nickname} 头像更新成功`,
+                    message: `User ${form.getValues().nickname} avatar Update Success`,
                 });
             })
             .finally(() => {
@@ -170,7 +170,7 @@ export default function UserEditModal(props: UserEditModalProps) {
                     >
                         <Flex gap={10} align={"center"}>
                             <MDIcon>person_add</MDIcon>
-                            <Text fw={600}>更新用户</Text>
+                            <Text fw={600}>Update User</Text>
                         </Flex>
                         <Divider my={10} />
                         <Box p={10}>
@@ -184,7 +184,7 @@ export default function UserEditModal(props: UserEditModalProps) {
                                         <Stack flex={1}>
                                             <Flex gap={10} w={"100%"}>
                                                 <TextInput
-                                                    label="用户名"
+                                                    label="username"
                                                     size="md"
                                                     w={"40%"}
                                                     disabled
@@ -197,7 +197,7 @@ export default function UserEditModal(props: UserEditModalProps) {
                                                     )}
                                                 />
                                                 <TextInput
-                                                    label="昵称"
+                                                    label="Nickname"
                                                     size="md"
                                                     w={"60%"}
                                                     key={form.key("nickname")}
@@ -207,14 +207,14 @@ export default function UserEditModal(props: UserEditModalProps) {
                                                 />
                                             </Flex>
                                             <Select
-                                                label="权限组"
+                                                label="Permission Group"
                                                 data={[
                                                     {
-                                                        label: "管理员",
+                                                        label: "administrator",
                                                         value: UGroup.Admin.toString(),
                                                     },
                                                     {
-                                                        label: "普通用户",
+                                                        label: "Normal User",
                                                         value: UGroup.User.toString(),
                                                     },
                                                 ]}
@@ -237,7 +237,7 @@ export default function UserEditModal(props: UserEditModalProps) {
                                             }
                                             onReject={() => {
                                                 showErrNotification({
-                                                    message: "文件上传失败",
+                                                    message: "File upload failed",
                                                 });
                                             }}
                                             h={150}
@@ -272,7 +272,7 @@ export default function UserEditModal(props: UserEditModalProps) {
                                                                 size="xl"
                                                                 inline
                                                             >
-                                                                拖拽或点击上传头像
+                                                                Drag or click to upload an avatar
                                                             </Text>
                                                             <Text
                                                                 size="sm"
@@ -280,7 +280,7 @@ export default function UserEditModal(props: UserEditModalProps) {
                                                                 inline
                                                                 mt={7}
                                                             >
-                                                                图片大小不超过
+                                                                The image size should not exceed
                                                                 3MB
                                                             </Text>
                                                         </Stack>
@@ -290,14 +290,14 @@ export default function UserEditModal(props: UserEditModalProps) {
                                         </Dropzone>
                                     </Flex>
                                     <TextInput
-                                        label="邮箱"
+                                        label="Email"
                                         size="md"
                                         leftSection={<MDIcon>email</MDIcon>}
                                         key={form.key("email")}
                                         {...form.getInputProps("email")}
                                     />
                                     <TextInput
-                                        label="密码"
+                                        label="password"
                                         size="md"
                                         leftSection={<MDIcon>lock</MDIcon>}
                                         key={form.key("password")}
@@ -311,7 +311,7 @@ export default function UserEditModal(props: UserEditModalProps) {
                                             <MDIcon c={"white"}>check</MDIcon>
                                         }
                                     >
-                                        更新
+                                        Renew
                                     </Button>
                                 </Flex>
                             </form>

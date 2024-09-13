@@ -75,7 +75,7 @@ export default function Page() {
         })
             .then((_) => {
                 showSuccessNotification({
-                    message: `比赛 ${game?.title} 已被删除`,
+                    message: `Game ${game?.title} has been deleted`,
                 });
             })
             .catch((e) => {
@@ -96,8 +96,8 @@ export default function Page() {
             .then((_) => {
                 showSuccessNotification({
                     message: !game?.is_enabled
-                        ? `比赛 ${game?.title} 已投放`
-                        : `比赛 ${game?.title} 已下架`,
+                        ? `Game ${game?.title} has been published`
+                        : `Game ${game?.title} has been unpublished`,
                 });
             })
             .catch((e) => {
@@ -119,16 +119,16 @@ export default function Page() {
                         <ThemeIcon variant="transparent">
                             <MDIcon>flag</MDIcon>
                         </ThemeIcon>
-                        <Text fw={600}>删除比赛</Text>
+                        <Text fw={600}>Delete Game</Text>
                     </Flex>
                     <Divider my={10} />
-                    <Text>你确定要删除比赛 {game?.title} 吗？</Text>
+                    <Text>Are you sure you want to delete the game {game?.title}?</Text>
                 </>
             ),
             withCloseButton: false,
             labels: {
-                confirm: "确定",
-                cancel: "取消",
+                confirm: "Yes",
+                cancel: "No",
             },
             confirmProps: {
                 color: "red",
@@ -143,7 +143,7 @@ export default function Page() {
     }, [search, page, rowsPerPage, sort, refresh]);
 
     useEffect(() => {
-        document.title = `比赛管理 - ${configStore?.pltCfg?.site?.title}`;
+        document.title = `Game Management - ${configStore?.pltCfg?.site?.title}`;
     }, []);
 
     return (
@@ -153,7 +153,7 @@ export default function Page() {
                     <Flex justify={"space-between"} align={"center"}>
                         <TextInput
                             variant="filled"
-                            placeholder="搜索"
+                            placeholder="Search"
                             mr={5}
                             value={searchInput}
                             onChange={(e) => setSearchInput(e.target.value)}
@@ -169,8 +169,8 @@ export default function Page() {
                         </ActionIcon>
                     </Flex>
                     <Select
-                        label="每页显示"
-                        description="选择每页显示的比赛数量"
+                        label="Items per page"
+                        description="Select the number of games displayed per page"
                         value={String(rowsPerPage)}
                         allowDeselect={false}
                         data={["5", "10", "20", "50"]}
@@ -180,25 +180,25 @@ export default function Page() {
                         mt={15}
                     />
                     <Select
-                        label="排序"
-                        description="选择比赛排序方式"
+                        label="Sort"
+                        description="Select the sorting method for games"
                         value={sort}
                         allowDeselect={false}
                         data={[
                             {
-                                label: "ID 升序",
+                                label: "ID Ascending",
                                 value: "id_asc",
                             },
                             {
-                                label: "ID 降序",
+                                label: "ID Descending",
                                 value: "id_desc",
                             },
                             {
-                                label: "标题升序",
+                                label: "Title Ascending",
                                 value: "title_asc",
                             },
                             {
-                                label: "标题降序",
+                                label: "Title Descending",
                                 value: "title_desc",
                             },
                         ]}
@@ -223,16 +223,16 @@ export default function Page() {
                                 >
                                     <Table.Th>
                                         <Flex justify={"start"}>
-                                            <Tooltip label="投放到比赛页面">
+                                            <Tooltip label="Publish to game page">
                                                 <ThemeIcon variant="transparent">
                                                     <MDIcon>flag</MDIcon>
                                                 </ThemeIcon>
                                             </Tooltip>
                                         </Flex>
                                     </Table.Th>
-                                    <Table.Th>标题</Table.Th>
-                                    <Table.Th>时间</Table.Th>
-                                    <Table.Th>状态</Table.Th>
+                                    <Table.Th>Title</Table.Th>
+                                    <Table.Th>Time</Table.Th>
+                                    <Table.Th>Status</Table.Th>
                                     <Table.Th>
                                         <Flex justify={"center"}>
                                             <ActionIcon onClick={createOpen}>
@@ -332,10 +332,10 @@ export default function Page() {
                                                     }
                                                 >
                                                     {status() === 0
-                                                        ? "未开始"
+                                                        ? "Not Started"
                                                         : status() === 1
-                                                          ? "进行中"
-                                                          : "已结束"}
+                                                          ? "Ongoing"
+                                                          : "Ended"}
                                                 </Badge>
                                             </Table.Th>
                                             <Table.Th>

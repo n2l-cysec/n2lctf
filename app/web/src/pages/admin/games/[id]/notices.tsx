@@ -42,7 +42,7 @@ function Page() {
     const [total, setTotal] = useState<number>(0);
 
     const typeMap = new Map([
-        ["new_challenge", "新题目"],
+        ["new_challenge", "新subject"],
         ["first_blood", "一血"],
         ["second_blood", "二血"],
         ["third_blood", "三血"],
@@ -94,13 +94,13 @@ function Page() {
                         <Text fw={600}>删除公告</Text>
                     </Flex>
                     <Divider my={10} />
-                    <Text>你确定要删除公告 {notice?.id} 吗？</Text>
+                    <Text>你Sure要删除公告 {notice?.id} 吗？</Text>
                 </>
             ),
             withCloseButton: false,
             labels: {
-                confirm: "确定",
-                cancel: "取消",
+                confirm: "Sure",
+                cancel: "Cancel",
             },
             confirmProps: {
                 color: "red",
@@ -163,7 +163,7 @@ function Page() {
                                 <Table.Th />
                                 <Table.Th>内容</Table.Th>
                                 <Table.Th>类型</Table.Th>
-                                <Table.Th>相关题目</Table.Th>
+                                <Table.Th>相关subject</Table.Th>
                                 <Table.Th>相关团队</Table.Th>
                                 <Table.Th />
                             </Table.Tr>

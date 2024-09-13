@@ -37,7 +37,7 @@ export function api(): AxiosInstance {
                 useAuthStore.getState().logout();
                 showInfoNotification({
                     id: "auth-expired",
-                    message: "登录凭据已过期，请重新登录",
+                    message: "Your login credentials have expired, please log in again",
                 });
             }
             return Promise.reject(error);

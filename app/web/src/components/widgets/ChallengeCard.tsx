@@ -34,15 +34,15 @@ export default function ChallengeCard({
 
     const bloodMap = [
         {
-            name: "一血",
+            name: "First Blood",
             icon: <FirstBloodIcon size={24} />,
         },
         {
-            name: "二血",
+            name: "Second Blood",
             icon: <SecondBloodIcon size={24} />,
         },
         {
-            name: "三血",
+            name: "Third Blood",
             icon: <ThirdBloodIcon size={24} />,
         },
     ];
@@ -82,7 +82,7 @@ export default function ChallengeCard({
             </Box>
             {status?.is_solved && (
                 <Box pos={"absolute"} right={20} top={20}>
-                    <Tooltip label="已解决">
+                    <Tooltip label="Resolved">
                         <MDIcon size={30} color={"#FFF"}>
                             done
                         </MDIcon>
@@ -115,7 +115,7 @@ export default function ChallengeCard({
                     <Tooltip
                         label={
                             <Text size={"xs"}>
-                                {status?.solved_times || 0} 次解决
+                                {status?.solved_times || 0} Secondary solution
                             </Text>
                         }
                         withArrow
@@ -141,7 +141,7 @@ export default function ChallengeCard({
                             status?.is_solved ? styles.textSolved : styles.text
                         }
                     >
-                        {status?.solved_times || 0} 次解决
+                        {status?.solved_times || 0} Secondary solution
                     </Text>
                 )}
                 <Flex align={"center"}>

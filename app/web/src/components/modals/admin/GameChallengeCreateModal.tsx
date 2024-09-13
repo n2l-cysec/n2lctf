@@ -56,25 +56,25 @@ export default function GameChallengeCreateModal(
         validate: {
             max_pts: (value) => {
                 if (value === 0) {
-                    return "最大分数不能为空";
+                    return "The maximum score cannot be empty";
                 }
                 if (value < form.getValues().min_pts) {
-                    return "最大分数不能小于最小分数";
+                    return "The maximum score cannot be less than the minimum score";
                 }
                 return null;
             },
             min_pts: (value) => {
                 if (value === 0) {
-                    return "最小分数不能为空";
+                    return "Minimum score cannot be empty";
                 }
                 if (value > form.getValues().max_pts) {
-                    return "最小分数不能大于最大分数";
+                    return "The minimum score cannot be greater than the maximum score";
                 }
                 return null;
             },
             challenge_id: (value) => {
                 if (value === 0) {
-                    return "题目不能为空";
+                    return "subject Cannot be empty";
                 }
                 return null;
             },
@@ -97,13 +97,13 @@ export default function GameChallengeCreateModal(
         })
             .then((_) => {
                 showSuccessNotification({
-                    message: `题目 ${challenge?.title} 添加成功`,
+                    message: `subject ${challenge?.title} Added successfully`,
                 });
                 setRefresh();
             })
             .catch((e) => {
                 showErrNotification({
-                    message: e.response.data.error || "添加题目失败",
+                    message: e.response.data.error || "Failed to add subject",
                 });
             })
             .finally(() => {
@@ -136,7 +136,7 @@ export default function GameChallengeCreateModal(
                     >
                         <Flex gap={10} align={"center"}>
                             <MDIcon>collections_bookmark</MDIcon>
-                            <Text fw={600}>添加题目</Text>
+                            <Text fw={600}>Add subject</Text>
                         </Flex>
                         <Divider my={10} />
                         <Box p={10}>
@@ -146,7 +146,7 @@ export default function GameChallengeCreateModal(
                                 )}
                             >
                                 <Stack gap={10}>
-                                    <Input.Wrapper label="题目" size="md">
+                                    <Input.Wrapper label="subject" size="md">
                                         <Button
                                             size="lg"
                                             onClick={challengeSelectOpen}
@@ -179,21 +179,21 @@ export default function GameChallengeCreateModal(
                                                     </Group>
                                                 </>
                                             )}
-                                            {!challenge && "选择题目"}
+                                            {!challenge && "选择subject"}
                                         </Button>
                                     </Input.Wrapper>
                                     <NumberInput
-                                        label="最小分值"
+                                        label="Minimum value"
                                         withAsterisk
-                                        description="本题目在难度曲线中的最小分值"
+                                        description="The minimum score of this subject in the difficulty curve"
                                         size="md"
                                         key={form.key("min_pts")}
                                         {...form.getInputProps("min_pts")}
                                     />
                                     <NumberInput
-                                        label="最大分值"
+                                        label="Maximum score"
                                         withAsterisk
-                                        description="本题目在难度曲线中的最大分值"
+                                        description="The maximum score of this subject in the difficulty curve"
                                         size="md"
                                         key={form.key("max_pts")}
                                         {...form.getInputProps("max_pts")}
@@ -206,7 +206,7 @@ export default function GameChallengeCreateModal(
                                             <MDIcon c={"white"}>check</MDIcon>
                                         }
                                     >
-                                        创建
+                                        Create
                                     </Button>
                                 </Flex>
                             </form>

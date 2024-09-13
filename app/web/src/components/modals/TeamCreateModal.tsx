@@ -38,17 +38,17 @@ export default function TeamCreateModal(props: TeamCreateModalProps) {
         validate: {
             name: (value) => {
                 if (value === "") {
-                    return "团队名称不能为空";
+                    return "Team name cannot be empty";
                 }
                 return null;
             },
             description: (value) => {
                 if (value === "") {
-                    return "团队简介不能为空";
+                    return "Team profile cannot be empty";
                 }
                 return null;
             },
-            email: isEmail("邮箱格式不正确"),
+            email: isEmail("The email format is incorrect"),
         },
     });
 
@@ -65,13 +65,13 @@ export default function TeamCreateModal(props: TeamCreateModalProps) {
         })
             .then((_) => {
                 showSuccessNotification({
-                    message: `团队 ${form.values.name} 创建成功`,
+                    message: `团队 ${form.values.name} Create Success`,
                 });
                 setRefresh();
             })
             .catch((e) => {
                 showErrNotification({
-                    message: e.response.data.error || "创建团队失败",
+                    message: e.response.data.error || "Create team failed",
                 });
             })
             .finally(() => {
@@ -99,7 +99,7 @@ export default function TeamCreateModal(props: TeamCreateModalProps) {
                     >
                         <Flex gap={10} align={"center"}>
                             <MDIcon>group_add</MDIcon>
-                            <Text fw={600}>创建团队</Text>
+                            <Text fw={600}>Create团队</Text>
                         </Flex>
                         <Divider my={10} />
                         <Box p={10}>
@@ -114,20 +114,20 @@ export default function TeamCreateModal(props: TeamCreateModalProps) {
                             >
                                 <Stack gap={10}>
                                     <TextInput
-                                        label="团队名称"
+                                        label="Team Name"
                                         size="md"
                                         leftSection={<MDIcon>people</MDIcon>}
                                         key={form.key("name")}
                                         {...form.getInputProps("name")}
                                     />
                                     <Textarea
-                                        label="团队简介"
+                                        label="About the Team"
                                         size="md"
                                         key={form.key("description")}
                                         {...form.getInputProps("description")}
                                     />
                                     <TextInput
-                                        label="邮箱"
+                                        label="Email"
                                         size="md"
                                         leftSection={<MDIcon>email</MDIcon>}
                                         key={form.key("email")}
@@ -141,7 +141,7 @@ export default function TeamCreateModal(props: TeamCreateModalProps) {
                                             <MDIcon c={"white"}>check</MDIcon>
                                         }
                                     >
-                                        创建
+                                        Create
                                     </Button>
                                 </Flex>
                             </form>

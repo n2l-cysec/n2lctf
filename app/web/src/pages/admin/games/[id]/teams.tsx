@@ -122,13 +122,13 @@ function Page() {
                         <Text fw={600}>移除团队</Text>
                     </Flex>
                     <Divider my={10} />
-                    <Text>你确定要移除团队 {gameTeam?.team?.name} 吗？</Text>
+                    <Text>你Sure要移除团队 {gameTeam?.team?.name} 吗？</Text>
                 </>
             ),
             withCloseButton: false,
             labels: {
-                confirm: "确定",
-                cancel: "取消",
+                confirm: "Sure",
+                cancel: "Cancel",
             },
             confirmProps: {
                 color: "red",

@@ -50,8 +50,8 @@ export default function GameCard({ game }: { game?: Game }) {
                         <Group>
                             <Badge size="lg">
                                 {game?.member_limit_max === 1
-                                    ? "单人赛"
-                                    : "多人赛"}
+                                    ? "Singles"
+                                    : "Multiplayer"}
                             </Badge>
                             <Badge size="lg">
                                 {Math.ceil(
@@ -70,10 +70,10 @@ export default function GameCard({ game }: { game?: Game }) {
                     <Tooltip
                         label={
                             status === 0
-                                ? "未开始"
+                                ? "Not started"
                                 : status === 1
-                                  ? "进行中"
-                                  : "已结束"
+                                  ? "in progress"
+                                  : "Ended"
                         }
                         offset={20}
                         withArrow

@@ -42,7 +42,7 @@ export default function Page() {
             id: category?.id,
         }).then((_) => {
             showSuccessNotification({
-                message: "分类删除成功",
+                message: "Category deleted successfully",
             });
             setRefresh((prev) => prev + 1);
         });
@@ -55,19 +55,19 @@ export default function Page() {
                 <>
                     <Flex gap={10} align={"center"}>
                         <MDIcon>bookmark_remove</MDIcon>
-                        <Text fw={600}>删除分类</Text>
+                        <Text fw={600}>Delete Category</Text>
                     </Flex>
                     <Divider my={10} />
                     <Text>
-                        你确定要删除分类 {category?.name}{" "}
-                        吗？（所有此分类的题目也会被删除）
+                        Are you sure you want to delete the category {category?.name}?
+                        (All subjects under this category will also be deleted)
                     </Text>
                 </>
             ),
             withCloseButton: false,
             labels: {
-                confirm: "确定",
-                cancel: "取消",
+                confirm: "Confirm",
+                cancel: "Cancel",
             },
             confirmProps: {
                 color: "red",
@@ -93,9 +93,9 @@ export default function Page() {
                                 }}
                             >
                                 <Table.Th>#</Table.Th>
-                                <Table.Th>分类名</Table.Th>
-                                <Table.Th>颜色（Hex）</Table.Th>
-                                <Table.Th>图标</Table.Th>
+                                <Table.Th>Category Name</Table.Th>
+                                <Table.Th>Color (Hex)</Table.Th>
+                                <Table.Th>Icon</Table.Th>
                                 <Table.Th>
                                     <Flex justify={"center"}>
                                         <ActionIcon
@@ -120,9 +120,7 @@ export default function Page() {
                                     <Table.Th>
                                         <Group>
                                             <ColorSwatch
-                                                color={
-                                                    category?.color || "brand"
-                                                }
+                                                color={category?.color || "brand"}
                                             />
                                             <Text c={category?.color} fw={600}>
                                                 {category?.color?.toUpperCase()}
@@ -140,9 +138,7 @@ export default function Page() {
                                             <ActionIcon
                                                 variant="transparent"
                                                 onClick={() => {
-                                                    setSelectedCategory(
-                                                        category
-                                                    );
+                                                    setSelectedCategory(category);
                                                     editOpen();
                                                 }}
                                             >
@@ -151,9 +147,7 @@ export default function Page() {
                                             <ActionIcon
                                                 variant="transparent"
                                                 onClick={() =>
-                                                    openDeleteCategoryModal(
-                                                        category
-                                                    )
+                                                    openDeleteCategoryModal(category)
                                                 }
                                             >
                                                 <MDIcon color={"red"}>

@@ -58,7 +58,7 @@ export default function CategoryEditModal(props: CategoryEditModalProps) {
             color: form.getValues().color,
         }).then((_) => {
             showSuccessNotification({
-                message: `分类 ${form.getValues().name} 更新成功`,
+                message: `Category ${form.getValues().name} Update Success`,
             });
             setRefresh();
             modalProps.onClose();
@@ -101,7 +101,7 @@ export default function CategoryEditModal(props: CategoryEditModalProps) {
                     >
                         <Flex gap={10} align={"center"}>
                             <MDIcon>collections_bookmark</MDIcon>
-                            <Text fw={600}>更新分类</Text>
+                            <Text fw={600}>Update Category</Text>
                         </Flex>
                         <Divider my={10} />
                         <Box p={10}>
@@ -112,18 +112,18 @@ export default function CategoryEditModal(props: CategoryEditModalProps) {
                             >
                                 <Stack gap={10}>
                                     <TextInput
-                                        label="分类名"
+                                        label="Category Name"
                                         withAsterisk
                                         key={form.key("name")}
                                         {...form.getInputProps("name")}
                                     />
                                     <ColorInput
-                                        label="颜色"
+                                        label="color"
                                         key={form.key("color")}
                                         {...form.getInputProps("color")}
                                     />
                                     <TextInput
-                                        label="图标"
+                                        label="icon"
                                         withAsterisk
                                         leftSection={
                                             <MDIcon>
@@ -141,7 +141,7 @@ export default function CategoryEditModal(props: CategoryEditModalProps) {
                                             <MDIcon c={"white"}>check</MDIcon>
                                         }
                                     >
-                                        保存
+                                        save
                                     </Button>
                                 </Flex>
                             </form>

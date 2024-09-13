@@ -41,7 +41,7 @@ export default function GameNoticeCreateModal(
             game_id: Number(id),
         }).then((_) => {
             showSuccessNotification({
-                message: "公告创建成功",
+                message: "Announcement Create Success",
             });
             setRefresh();
             modalProps.onClose();
@@ -70,7 +70,7 @@ export default function GameNoticeCreateModal(
                 >
                     <Flex gap={10} align={"center"}>
                         <MDIcon>campaign</MDIcon>
-                        <Text fw={600}>创建公告</Text>
+                        <Text fw={600}>Create公告</Text>
                     </Flex>
                     <Divider my={10} />
                     <Box p={10}>
@@ -94,7 +94,7 @@ export default function GameNoticeCreateModal(
                                         <MDIcon c={"white"}>check</MDIcon>
                                     }
                                 >
-                                    创建
+                                    Create
                                 </Button>
                             </Flex>
                         </form>

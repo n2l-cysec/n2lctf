@@ -126,13 +126,13 @@ function Page() {
                         <Text fw={600}>删除提交记录</Text>
                     </Flex>
                     <Divider my={10} />
-                    <Text>你确定要删除提交记录 {submission?.flag} 吗？</Text>
+                    <Text>你Sure要删除提交记录 {submission?.flag} 吗？</Text>
                 </>
             ),
             withCloseButton: false,
             labels: {
-                confirm: "确定",
-                cancel: "取消",
+                confirm: "Sure",
+                cancel: "Cancel",
             },
             confirmProps: {
                 color: "red",
@@ -179,7 +179,7 @@ function Page() {
                             >
                                 <Table.Th />
                                 <Table.Th>Flag</Table.Th>
-                                <Table.Th>题目</Table.Th>
+                                <Table.Th>subject</Table.Th>
                                 <Table.Th>相关团队</Table.Th>
                                 <Table.Th>提交者</Table.Th>
                                 <Table.Th>提交时间</Table.Th>
