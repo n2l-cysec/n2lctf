@@ -17,9 +17,11 @@ use crate::web::model::{team::*, Metadata};
 use crate::web::traits::{Ext, WebError};
 
 pub async fn can_modify_team(user: crate::model::user::Model, team_id: i64) -> bool {
+    println!("user : {:?}, teamid: {}", user, team_id);
     if user.group == Group::Admin {
         return true;
     }
+    
     let user_teams = crate::model::user_team::find(
         Some(user.id),
         Some(team_id),
@@ -198,11 +200,9 @@ pub async fn get_invite_token(
     }
 
     let team = crate::model::team::Entity::find_by_id(id)
-        .select_only()
-        .column(crate::model::team::Column::InviteToken)
-        .one(&get_db())
-        .await?
-        .ok_or_else(|| WebError::NotFound(String::new()))?;
+    .one(&get_db())
+    .await?
+    .ok_or_else(|| WebError::NotFound(String::from("invalid_user_or_team")))?;
 
     return Ok((
         StatusCode::OK,
