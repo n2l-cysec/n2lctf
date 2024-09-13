@@ -19,7 +19,7 @@ pub struct Model {
     pub title: String,
     pub description: Option<String>,
     pub category_id: i64,
-    #[sea_orm(default_value = "[]")]
+    // #[sea_orm(default_value = "[]")]
     pub tags: Vec<String>,
     #[sea_orm(default_value = false)]
     pub is_dynamic: bool,

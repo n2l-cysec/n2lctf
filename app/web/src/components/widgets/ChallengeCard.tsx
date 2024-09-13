@@ -115,7 +115,7 @@ export default function ChallengeCard({
                     <Tooltip
                         label={
                             <Text size={"xs"}>
-                                {status?.solved_times || 0} Secondary solution
+                                {status?.solved_times || 0} Solve
                             </Text>
                         }
                         withArrow
@@ -141,7 +141,7 @@ export default function ChallengeCard({
                             status?.is_solved ? styles.textSolved : styles.text
                         }
                     >
-                        {status?.solved_times || 0} Secondary solution
+                        {status?.solved_times || 0} Solve
                     </Text>
                 )}
                 <Flex align={"center"}>

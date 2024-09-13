@@ -44,8 +44,9 @@ export interface TeamDeleteRequest {
 }
 
 export interface TeamJoinRequest {
-    id: number;
-    token: string;
+    user_id: number;
+    team_id: number;
+    invite_token: string;
 }
 
 export interface TeamLeaveRequest {

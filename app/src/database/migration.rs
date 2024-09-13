@@ -18,7 +18,7 @@ where
     let stmt = builder.build(schema.create_table_from_entity(entity).if_not_exists());
 
     match db.execute(stmt).await {
-        Err(e) => error!("Error: {}", e),
+        Err(e) => error!("Error executing db: {}", e),
         _ => {}
     }
 }

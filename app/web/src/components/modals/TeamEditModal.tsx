@@ -500,7 +500,7 @@ export default function TeamEditModal(props: TeamEditModalProps) {
                                             onClick={openDeleteTeamModal}
                                             color="red"
                                         >
-                                            dissolution
+                                            Leave
                                         </Button>
                                         <Button
                                             type="submit"

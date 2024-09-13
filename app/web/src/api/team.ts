@@ -69,7 +69,7 @@ export async function joinTeam(request: TeamJoinRequest) {
     return api().post<{
         code: number;
         data: Team;
-    }>(`/teams/${request?.id}/join`, request);
+    }>(`/teams/${request?.team_id}/join`, request);
 }
 
 export async function leaveTeam(request: TeamLeaveRequest) {

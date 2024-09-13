@@ -16,6 +16,7 @@ import {
 import { useForm } from "@mantine/form";
 import MDIcon from "@/components/ui/MDIcon";
 import { joinTeam } from "@/api/team";
+import { useAuthStore } from "@/stores/auth";
 
 interface TeamJoinModalProps extends ModalProps {
     setRefresh: () => void;
@@ -23,6 +24,7 @@ interface TeamJoinModalProps extends ModalProps {
 
 export default function TeamJoinModal(props: TeamJoinModalProps) {
     const { setRefresh, ...modalProps } = props;
+    const authStore = useAuthStore();
 
     const form = useForm({
         initialValues: {
@@ -40,8 +42,10 @@ export default function TeamJoinModal(props: TeamJoinModalProps) {
 
     function handleJoinTeam() {
         joinTeam({
-            id: Number(form.getValues().inviteToken.split(":")[0]),
-            token: form.getValues().inviteToken.split(":")[1],
+            user_id: Number(authStore.user?.id),
+            team_id: Number(form.getValues().inviteToken.split(":")[0]),
+            // id: Number(form.getValues().inviteToken.split(":")[0]),
+            invite_token: form.getValues().inviteToken.split(":")[1],
         })
             .then((_) => {
                 showSuccessNotification({

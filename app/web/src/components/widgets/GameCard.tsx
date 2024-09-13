@@ -59,7 +59,7 @@ export default function GameCard({ game }: { game?: Game }) {
                                         Number(game?.started_at)) /
                                         3600
                                 )}{" "}
-                                小时
+                                Hour
                             </Badge>
                         </Group>
                         <Text size="2rem" fw={900} ff={"san-serif"}>
