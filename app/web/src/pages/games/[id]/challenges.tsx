@@ -375,23 +375,23 @@ function Page() {
                                     </Title>
                                 </Flex>
                                 <Flex justify={"space-between"} mx={36}>
-                                    <Stack align={"center"} gap={10}>
+                                    <Stack align={"center"} gap={20}>
                                         <Text fw={700} size="1.2rem">
-                                            {rank > 0 ? rank : "No ranking"}
+                                            {rank > 0 ? rank : "#0"}
                                         </Text>
                                         <Badge>Ranking</Badge>
                                     </Stack>
-                                    <Stack align={"center"} gap={10}>
+                                    <Stack align={"center"} gap={20}>
                                         <Text fw={700} size="1.2rem">
-                                            {score || 0}
+                                            {score || 10000}
                                         </Text>
                                         <Badge>Score</Badge>
                                     </Stack>
-                                    <Stack align={"center"} gap={10}>
+                                    <Stack align={"center"} gap={20}>
                                         <Text fw={700} size="1.2rem">
                                             {solves || 0}
                                         </Text>
-                                        <Badge>Resolved</Badge>
+                                        <Badge>Solved</Badge>
                                     </Stack>
                                 </Flex>
                             </Stack>

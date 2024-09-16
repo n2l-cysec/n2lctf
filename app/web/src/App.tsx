@@ -12,6 +12,8 @@ import { useDisclosure, useFavicon } from "@mantine/hooks";
 import { Link, useLocation } from "react-router-dom";
 import MDIcon from "./components/ui/MDIcon";
 import { useWsrxStore } from "./stores/wsrx";
+import { useStore } from "./hooks/use-store";
+import { useSidebarToggle } from "./hooks/use-sidebar-toggle";
 
 function App() {
     const categoryStore = useCategoryStore();
@@ -73,7 +75,8 @@ function App() {
             setAdminMode(true);
         }
     }, [location.pathname]);
-
+    const sidebar = useStore(useSidebarToggle, (state) => state);
+    if (!sidebar) return null;
     return (
         <>
             <AppShell
@@ -84,14 +87,17 @@ function App() {
                     collapsed: { desktop: true, mobile: !opened },
                 }}
             >
+              
+                   
                 <AppShell.Header>
-                    <Navbar
+                 <Navbar
                         burger={{
                             opened: opened,
                             toggle: toggle,
                         }}
                         adminMode={adminMode}
                     />
+                 
                 </AppShell.Header>
                 <AppShell.Navbar py={"md"}>
                     {!adminMode && (

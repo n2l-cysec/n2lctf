@@ -1,7 +1,17 @@
-import MDIcon from "@/components/ui/MDIcon";
 import { useAuthStore } from "@/stores/auth";
 import { useConfigStore } from "@/stores/config";
-import { Box, Button, TextInput } from "@mantine/core";
+import {
+    Text,
+    Button,
+    Divider,
+    Group,
+    Paper,
+    PasswordInput,
+    Stack,
+    TextInput,
+    Anchor,
+    Container,
+} from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +20,7 @@ import {
     showSuccessNotification,
 } from "@/utils/notification";
 import { login } from "@/api/user";
+import { upperFirst } from "@mantine/hooks";
 
 export default function Page() {
     const configStore = useConfigStore();
@@ -63,10 +74,18 @@ export default function Page() {
                 console.log(res);
             })
             .catch((err) => {
-                showErrNotification({
-                    title: "An Error Occurred",
-                    message: `Login Failed ${err}`,
-                });
+                console.error(err.response.data);
+                if (err.response.data.code == 400) {
+                    showErrNotification({
+                        title: "Invalid Login",
+                        message: `Wrong uername / email or password`,
+                    });
+                } else {
+                    showErrNotification({
+                        title: "An Error Occurred",
+                        message: `Login Failed ${err}`,
+                    });
+                }
             })
             .finally(() => {
                 setLoginLoading(false);
@@ -74,74 +93,61 @@ export default function Page() {
     }
 
     return (
-        <>
-            <Box
-                sx={{
-                    position: "fixed",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                }}
-                className={"no-select"}
-            >
-                <Box
-                    sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        marginTop: "2rem",
-                    }}
-                >
-                    <form onSubmit={form.onSubmit((_) => handleLogin())}>
+        <Container size={420} my={40}>
+            <Paper radius="md" p="xl" withBorder>
+                <Text size="lg" fw={500}>
+                    Welcome to {configStore?.pltCfg?.site?.title}, please login
+                </Text>
+
+                <Divider
+                    label="Or continue with email"
+                    labelPosition="center"
+                    my="lg"
+                />
+
+                <form onSubmit={form.onSubmit((_) => handleLogin())}>
+                    <Stack>
                         <TextInput
+                            required
                             label="Username/Email"
-                            size="lg"
-                            leftSection={<MDIcon>person</MDIcon>}
-                            key={form.key("account")}
+                            placeholder="hello/hello@example.com"
+                            radius="md"
                             {...form.getInputProps("account")}
                         />
-                        <TextInput
+
+                        <PasswordInput
+                            required
                             label="Password"
-                            type="password"
-                            size="lg"
-                            leftSection={<MDIcon>lock</MDIcon>}
-                            mt={10}
-                            key={form.key("password")}
+                            placeholder="Your password"
+                            radius="md"
                             {...form.getInputProps("password")}
                         />
+                    </Stack>
+
+                    <Group justify="space-between" mt="xl">
                         <Button
-                            loading={loginLoading}
-                            size={"lg"}
-                            fullWidth
-                            sx={{ marginTop: "2rem", bgcolor: "primary.700" }}
                             type="submit"
+                            radius="xl"
+                            loading={loginLoading}
                         >
                             Login
                         </Button>
-                    </form>
+                    </Group>
                     {configStore?.pltCfg?.auth?.registration?.enabled && (
-                        <Box
-                            sx={{
-                                display: "flex",
-                                marginTop: "1rem",
-                                justifyContent: "end",
-                            }}
-                        >
-                            Don't have an account?
-                            <Box
+                        <Group justify="space-between" mt="xl">
+                            <Anchor
+                                component="button"
+                                type="button"
+                                c="dimmed"
                                 onClick={() => navigate("/register")}
-                                sx={{
-                                    fontStyle: "italic",
-                                    ":hover": {
-                                        cursor: "pointer",
-                                    },
-                                }}
+                                size="xs"
                             >
-                                Register
-                            </Box>
-                        </Box>
+                                Don't have an account? Register
+                            </Anchor>
+                        </Group>
                     )}
-                </Box>
-            </Box>
-        </>
+                </form>
+            </Paper>
+        </Container>
     );
 }

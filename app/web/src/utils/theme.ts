@@ -11,16 +11,17 @@ export function useTheme() {
     const theme = createTheme({
         colors: {
             brand: [
-                "#B4CFF9",
-                "#8EB7F6",
-                "#68A0F3",
-                "#4288F0",
-                "#1D70ED",
-                "#115DD0",
-                "#0D47A1",
-                "#0C4497",
-                "#0B3B84",
-                "#093371",
+                // Gradient from cyan to purple
+                "rgba(200, 255, 255, 0.7)", // Very light cyan
+                "rgba(170, 230, 255, 0.7)", // Light cyan
+                "rgba(140, 205, 255, 0.7)", // Soft cyan
+                "rgba(110, 180, 255, 0.7)", // Medium cyan
+                "rgba(80, 155, 255, 0.7)",  // Deep cyan
+                "rgba(120, 130, 255, 0.7)", // Light purple cyan
+                "rgba(140, 110, 255, 0.7)", // Soft purple cyan
+                "rgba(160, 90, 255, 0.7)",  // Medium purple cyan
+                "rgba(180, 70, 255, 0.7)",  // Deep purple cyan
+                "rgba(200, 50, 255, 0.7)"   // Light purple
             ],
             light: [
                 "#FFFFFF",

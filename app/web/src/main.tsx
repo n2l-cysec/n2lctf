@@ -6,8 +6,8 @@ import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import "@mantine/dates/styles.css";
 import "@mantine/dropzone/styles.css";
-import "./main.css";
-import { MantineProvider } from "@mantine/core";
+import "./index.css";
+import { createTheme, MantineProvider } from "@mantine/core";
 import { DatesProvider } from "@mantine/dates";
 import { emotionTransform, MantineEmotionProvider } from "@mantine/emotion";
 import { ModalsProvider } from "@mantine/modals";
@@ -16,6 +16,9 @@ import { Notifications } from "@mantine/notifications";
 
 const { theme } = useTheme();
 
+
+
+  
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
         <Router>

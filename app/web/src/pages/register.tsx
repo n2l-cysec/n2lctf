@@ -1,10 +1,22 @@
 import { register } from "@/api/user";
-import MDIcon from "@/components/ui/MDIcon";
 import { useConfigStore } from "@/stores/config";
-import { Box, Button, Flex, Group, Stack, TextInput } from "@mantine/core";
+import {
+    Box,
+    Button,
+    Container,
+    Divider,
+    Group,
+    Paper,
+    Stack,
+    Text,
+    TextInput,
+    PasswordInput,
+    Flex,
+    Anchor
+} from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
 import { useEffect, useState } from "react";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
     showErrNotification,
     showSuccessNotification,
@@ -13,7 +25,8 @@ import Turnstile from "react-turnstile";
 import ReCAPTCHA from "react-google-recaptcha";
 import { z } from "zod";
 
-export default function Page() {
+export default function RegisterPage() {
+    const navigate = useNavigate();
     const configStore = useConfigStore();
 
     useEffect(() => {
@@ -48,7 +61,7 @@ export default function Page() {
     function handleRegister() {
         if (
             configStore?.pltCfg?.auth?.registration?.captcha &&
-            !form.getValues().token
+            !form.values.token
         ) {
             showErrNotification({
                 title: "Registration Failed",
@@ -58,18 +71,18 @@ export default function Page() {
         }
         setRegisterLoading(true);
         register({
-            username: form.getValues().username?.toLocaleLowerCase(),
-            nickname: form.getValues().nickname,
-            password: form.getValues().password,
-            email: form.getValues().email,
-            token: form.getValues().token,
+            username: form.values.username?.toLowerCase(),
+            nickname: form.values.nickname,
+            password: form.values.password,
+            email: form.values.email,
+            token: form.values.token,
         })
             .then((_) => {
                 showSuccessNotification({
                     title: "Registration Successful",
                     message: "Please log in",
                 });
-                redirect("/login");
+                navigate("/login");
             })
             .catch((err) => {
                 switch (err.response?.status) {
@@ -77,6 +90,12 @@ export default function Page() {
                         showErrNotification({
                             title: "Registration Failed",
                             message: "Username or email is already registered",
+                        });
+                        break;
+                    default:
+                        showErrNotification({
+                            title: "Registration Failed",
+                            message: `An error occurred: ${err}`,
                         });
                         break;
                 }
@@ -87,120 +106,86 @@ export default function Page() {
     }
 
     return (
-        <>
-            <Box
-                sx={{
-                    position: "fixed",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                }}
-                className={"no-select"}
-            >
-                <Stack>
-                    <form onSubmit={form.onSubmit((_) => handleRegister())}>
-                        <Stack>
-                            <Group>
-                                <TextInput
-                                    label="Username"
-                                    size="lg"
-                                    leftSection={<MDIcon>person</MDIcon>}
-                                    key={form.key("username")}
-                                    {...form.getInputProps("username")}
-                                />
-                                <TextInput
-                                    label="Nickname"
-                                    size="lg"
-                                    leftSection={<MDIcon>person</MDIcon>}
-                                    key={form.key("nickname")}
-                                    {...form.getInputProps("nickname")}
-                                />
-                            </Group>
-                            <TextInput
-                                label="Email"
-                                size="lg"
-                                leftSection={<MDIcon>email</MDIcon>}
-                                key={form.key("email")}
-                                {...form.getInputProps("email")}
-                            />
-                            <TextInput
-                                label="Password"
-                                type="password"
-                                size="lg"
-                                leftSection={<MDIcon>lock</MDIcon>}
-                                key={form.key("password")}
-                                {...form.getInputProps("password")}
-                            />
-                            <Flex justify={"center"}>
-                                {configStore?.pltCfg?.auth?.registration
-                                    ?.captcha && (
-                                    <>
-                                        {configStore?.pltCfg?.captcha
-                                            ?.provider === "turnstile" && (
-                                            <Turnstile
-                                                sitekey={String(
-                                                    configStore?.pltCfg?.captcha
-                                                        ?.turnstile?.site_key
-                                                )}
-                                                onVerify={(token) => {
-                                                    form.setValues({
-                                                        ...form.values,
-                                                        token: token,
-                                                    });
-                                                }}
-                                            />
-                                        )}
-                                        {configStore?.pltCfg?.captcha
-                                            ?.provider === "recaptcha" && (
-                                            <ReCAPTCHA
-                                                sitekey={String(
-                                                    configStore?.pltCfg?.captcha
-                                                        ?.recaptcha?.site_key
-                                                )}
-                                                onChange={(token) => {
-                                                    form.setValues({
-                                                        ...form.values,
-                                                        token: String(token),
-                                                    });
-                                                }}
-                                            />
-                                        )}
-                                    </>
+        <Container size={420} my={40}>
+            <Paper radius="md" p="xl" withBorder>
+                <Text size="lg" fw={500}>
+                    Register for {configStore?.pltCfg?.site?.title}
+                </Text>
+
+                <Divider
+                    label="Or continue with your details"
+                    labelPosition="center"
+                    my="lg"
+                />
+
+                <form onSubmit={form.onSubmit((_) => handleRegister())}>
+                    <Stack>
+                        <TextInput
+                            label="Username"
+                            placeholder="Your username"
+                            radius="md"
+                            {...form.getInputProps("username")}
+                        />
+                        <TextInput
+                            label="Nickname"
+                            placeholder="Your nickname"
+                            radius="md"
+                            {...form.getInputProps("nickname")}
+                        />
+                        <TextInput
+                            label="Email"
+                            placeholder="hello@example.com"
+                            radius="md"
+                            {...form.getInputProps("email")}
+                        />
+                        <PasswordInput
+                            label="Password"
+                            placeholder="Your password"
+                            radius="md"
+                            {...form.getInputProps("password")}
+                        />
+                        {configStore?.pltCfg?.auth?.registration?.captcha && (
+                            <Flex justify="center">
+                                {configStore?.pltCfg?.captcha?.provider === "turnstile" && (
+                                    <Turnstile
+                                        sitekey={String(configStore?.pltCfg?.captcha?.turnstile?.site_key)}
+                                        onVerify={(token) => {
+                                            form.setFieldValue("token", token);
+                                        }}
+                                    />
+                                )}
+                                {configStore?.pltCfg?.captcha?.provider === "recaptcha" && (
+                                    <ReCAPTCHA
+                                        sitekey={String(configStore?.pltCfg?.captcha?.recaptcha?.site_key)}
+                                        onChange={(token) => {
+                                            form.setFieldValue("token", String(token));
+                                        }}
+                                    />
                                 )}
                             </Flex>
-                            <Button
-                                loading={registerLoading}
-                                size={"lg"}
-                                fullWidth
-                                sx={{ bgcolor: "primary.700" }}
-                                type="submit"
-                            >
-                                Register
-                            </Button>
-                        </Stack>
-                    </form>
-                    <Box
-                        sx={{
-                            display: "flex",
-                            marginTop: "1rem",
-                            justifyContent: "end",
-                        }}
-                    >
-                        Already have an account?
-                        <Box
-                            onClick={() => redirect("/login")}
-                            sx={{
-                                fontStyle: "italic",
-                                ":hover": {
-                                    cursor: "pointer",
-                                },
-                            }}
+                        )}
+                        <Button
+                            type="submit"
+                            radius="xl"
+                            loading={registerLoading}
+                            fullWidth
                         >
-                            Log in
-                        </Box>
-                    </Box>
-                </Stack>
-            </Box>
-        </>
+                            Register
+                        </Button>
+                    </Stack>
+                </form>
+                <Group justify="space-between" mt="xl">
+                    <Anchor
+                        component="button"
+                        type="button"
+                        c="dimmed"
+                        onClick={() => navigate("/login")}
+                        size="xs"
+                    >
+                        Already have an account? Login
+                    </Anchor>
+                </Group>
+            </Paper>
+        </Container>
     );
 }

@@ -24,7 +24,7 @@ import { Group as UGroup } from "@/types/user";
 
 export const NavItems = [
     {
-        name: "Question Bank",
+        name: "Challenges",
         path: "/challenges",
         icon: "collections_bookmark",
     },
@@ -42,7 +42,7 @@ export const NavItems = [
 
 export const AdminNavItems = [
     {
-        name: "Question Bank",
+        name: "Challenges",
         path: "/admin/challenges",
         icon: "collections_bookmark",
     },
@@ -71,7 +71,10 @@ interface NavbarProps {
     adminMode?: boolean;
 }
 
+
+  
 export default function Navbar(props: NavbarProps) {
+    
     const { burger, adminMode } = props;
     const authStore = useAuthStore();
     const configStore = useConfigStore();
@@ -86,137 +89,11 @@ export default function Navbar(props: NavbarProps) {
         authStore.setUser(undefined);
         navigate("/login");
     }
-
-    return (
-        <Flex
-            h={64}
-            w={"100%"}
-            bg={"brand"}
-            px={20}
-            display={"flex"}
-            justify={"space-between"}
-            align={"center"}
-            pos={"fixed"}
-            sx={{
-                top: 0,
-                zIndex: 2,
-            }}
-        >
-            <Group w={"50%"} wrap={"nowrap"} gap={0}>
-                <Burger
-                    opened={burger?.opened}
-                    onClick={burger?.toggle}
-                    hiddenFrom={"md"}
-                    size={"sm"}
-                    color={"white"}
-                />
-                <Button
-                    h={48}
-                    component={Link}
-                    variant={"transparent"}
-                    to={"/"}
-                    draggable={false}
-                >
-                    <Flex align={"center"}>
-                        <Image
-                            src={"/api/configs/favicon"}
-                            fallbackSrc={"/favicon.ico"}
-                            alt=""
-                            w={36}
-                            h={36}
-                            draggable={false}
-                        />
-                        <Title
-                            px={10}
-                            order={3}
-                            sx={{
-                                color: "white",
-                            }}
-                            visibleFrom={"xs"}
-                        >
-                            {configStore?.pltCfg?.site?.title}
-                        </Title>
-                    </Flex>
-                </Button>
-            </Group>
-            <Box sx={{ flexShrink: 0 }}>
-                <Group visibleFrom={"md"}>
-                    {!adminMode && (
-                        <>
-                            {NavItems?.map((item) => (
-                                <Button
-                                    key={item?.name}
-                                    component={Link}
-                                    variant={"transparent"}
-                                    c={"white"}
-                                    leftSection={
-                                        <MDIcon color={"white"}>
-                                            {item?.icon}
-                                        </MDIcon>
-                                    }
-                                    draggable={false}
-                                    to={item?.path}
-                                >
-                                    {item?.name}
-                                </Button>
-                            ))}
-                            {authStore?.user?.group === UGroup.Admin && (
-                                <Button
-                                    variant={"transparent"}
-                                    c={"white"}
-                                    component={Link}
-                                    leftSection={
-                                        <MDIcon color={"white"}>
-                                            settings
-                                        </MDIcon>
-                                    }
-                                    draggable={false}
-                                    to={"/admin"}
-                                >
-                                    Admin
-                                </Button>
-                            )}
-                        </>
-                    )}
-                    {adminMode && (
-                        <>
-                            <Button
-                                component={Link}
-                                variant={"transparent"}
-                                c={"white"}
-                                leftSection={
-                                    <MDIcon color={"white"}>
-                                        keyboard_return
-                                    </MDIcon>
-                                }
-                                draggable={false}
-                                to={"/"}
-                            >
-                                Back
-                            </Button>
-                            {AdminNavItems?.map((item) => (
-                                <Button
-                                    key={item?.name}
-                                    component={Link}
-                                    variant={"transparent"}
-                                    c={"white"}
-                                    leftSection={
-                                        <MDIcon color={"white"}>
-                                            {item?.icon}
-                                        </MDIcon>
-                                    }
-                                    draggable={false}
-                                    to={item?.path}
-                                >
-                                    {item?.name}
-                                </Button>
-                            ))}
-                        </>
-                    )}
-                </Group>
-            </Box>
-            <Flex w={"50%"} justify={"end"} align={"center"}>
-                <ActionIcon
+    function Profile() {
+        return (
+            
+            <>
+            <ActionIcon
                     aria-label="Settings"
                     c={"white"}
                     mx={10}
@@ -350,7 +227,149 @@ export default function Navbar(props: NavbarProps) {
                         </Menu.Dropdown>
                     </Menu>
                 )}
+            </>
+        )
+    }
+    function NavbarLink() {
+        return (
+            <Group visibleFrom={"md"}>
+            {!adminMode && (
+                <>
+                    {NavItems?.map((item) => (
+                        <Button
+                            key={item?.name}
+                            component={Link}
+                            variant={"transparent"}
+                            c={"white"}
+                            leftSection={
+                                <MDIcon color={"white"}>
+                                    {item?.icon}
+                                </MDIcon>
+                            }
+                            draggable={false}
+                            to={item?.path}
+                        >
+                            {item?.name}
+                        </Button>
+                    ))}
+                    {authStore?.user?.group === UGroup.Admin && (
+                        <Button
+                            variant={"transparent"}
+                            c={"white"}
+                            component={Link}
+                            leftSection={
+                                <MDIcon color={"white"}>
+                                    settings
+                                </MDIcon>
+                            }
+                            draggable={false}
+                            to={"/admin"}
+                        >
+                            Admin
+                        </Button>
+                    )}
+                </>
+            )}
+            {adminMode && (
+                <>
+                    <Button
+                        component={Link}
+                        variant={"transparent"}
+                        c={"white"}
+                        leftSection={
+                            <MDIcon color={"white"}>
+                                keyboard_return
+                            </MDIcon>
+                        }
+                        draggable={false}
+                        to={"/"}
+                    >
+                        Back
+                    </Button>
+                    {AdminNavItems?.map((item) => (
+                        <Button
+                            key={item?.name}
+                            component={Link}
+                            variant={"transparent"}
+                            c={"white"}
+                            leftSection={
+                                <MDIcon color={"white"}>
+                                    {item?.icon}
+                                </MDIcon>
+                            }
+                            draggable={false}
+                            to={item?.path}
+                        >
+                            {item?.name}
+                        </Button>
+                    ))}
+                </>
+            )}
+        </Group>
+        );
+      }
+
+    return (
+
+        <Flex
+            h={64}
+            w={"100%"}
+            bg={"gray"}
+            px={20}
+            display={"flex"}
+            justify={"space-between"}
+            align={"center"}
+            pos={"fixed"}
+            
+            sx={{
+                top: 0,
+                zIndex: 2,
+            }}
+        >
+            <Group w={"50%"} wrap={"nowrap"} gap={0}>
+                <Burger
+                    opened={burger?.opened}
+                    onClick={burger?.toggle}
+                    hiddenFrom={"md"}
+                    size={"sm"}
+                    color={"white"}
+                />
+                <Button
+                    h={48}
+                    component={Link}
+                    variant={"transparent"}
+                    to={"/"}
+                    draggable={false}
+                >
+                    <Flex align={"center"}>
+                        <Image
+                            src={"/api/configs/favicon"}
+                            fallbackSrc={"/favicon.ico"}
+                            alt=""
+                            w={36}
+                            h={36}
+                            draggable={false}
+                        />
+                        <Title
+                            px={10}
+                            order={3}
+                            sx={{
+                                color: "white",
+                            }}
+                            visibleFrom={"xs"}
+                        >
+                            {configStore?.pltCfg?.site?.title}
+                        </Title>
+                    </Flex>
+                </Button>
+            </Group>
+            <Box sx={{ flexShrink: 0 }}>
+               {NavbarLink()}
+            </Box>
+            <Flex w={"50%"} justify={"end"} align={"center"}>
+                {Profile()}
             </Flex>
         </Flex>
+        
     );
 }

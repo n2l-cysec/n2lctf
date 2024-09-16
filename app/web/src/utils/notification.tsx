@@ -48,7 +48,7 @@ export function showSuccessNotification({
 }) {
     const notificationData: NotificationData = {
         id: id,
-        title: title || "成功",
+        title: title || "Success",
         message: message,
         color: "green",
         icon: <MDIcon c={"white"}>check</MDIcon>,

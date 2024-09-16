@@ -57,7 +57,7 @@ export const useWsrxStore = create<WsrxState>()(
                             showSuccessNotification({
                                 id: "wsrx",
                                 title: "WSRX",
-                                message: "连接成功",
+                                message: "连接Success",
                                 update: get()?.status === "connecting",
                             });
                             set({ status: "online" });

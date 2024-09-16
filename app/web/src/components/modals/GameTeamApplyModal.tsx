@@ -71,9 +71,16 @@ export default function GameTeamApplyModal(props: GameTeamApplyModalProps) {
                 });
             })
             .catch((e) => {
-                showErrNotification({
-                    message: e.response.data.msg || "Application failed",
-                });
+                if (e.response.data.code == 403) {
+                    showErrNotification({
+                        title: "Forbidden",
+                        message: "You cannot joined the game",
+                    });
+                } else {
+                    showErrNotification({
+                        message: e.response.data.msg || "Application failed",
+                    });
+                }
             })
             .finally(() => {
                 modalProps.onClose();
